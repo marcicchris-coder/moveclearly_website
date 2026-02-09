@@ -1,0 +1,70 @@
+'use client';
+
+import Link from 'next/link';
+import { Menu, PhoneCall, Search } from 'lucide-react';
+import { useState } from 'react';
+import { navLinks } from '@/lib/constants';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+
+export function SiteHeader() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <header className='sticky top-0 z-50 border-b bg-background/90 backdrop-blur'>
+      <div className='mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6'>
+        <Link href='/' className='text-xl font-bold tracking-tight'>
+          Move Clearly
+        </Link>
+
+        <nav className='hidden items-center gap-6 md:flex' aria-label='Main navigation'>
+          {navLinks.map((link) => (
+            <Link key={link.href} href={link.href} className='text-sm font-medium text-foreground/90 hover:text-foreground'>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className='hidden items-center gap-2 md:flex'>
+          <Button asChild variant='outline' size='sm'>
+            <Link href='/schedule'>
+              <PhoneCall className='mr-2 h-4 w-4' />
+              Schedule Call
+            </Link>
+          </Button>
+          <Button asChild size='sm'>
+            <Link href='/search'>
+              <Search className='mr-2 h-4 w-4' />
+              Start Home Search
+            </Link>
+          </Button>
+        </div>
+
+        <button
+          type='button'
+          className='rounded-md p-2 md:hidden'
+          aria-label='Toggle menu'
+          aria-expanded={open}
+          onClick={() => setOpen((prev) => !prev)}
+        >
+          <Menu className='h-5 w-5' />
+        </button>
+      </div>
+
+      <div className={cn('border-t px-4 py-3 md:hidden', open ? 'block' : 'hidden')}>
+        <nav className='grid gap-3' aria-label='Mobile navigation'>
+          {navLinks.map((link) => (
+            <Link key={link.href} href={link.href} className='text-sm font-medium' onClick={() => setOpen(false)}>
+              {link.label}
+            </Link>
+          ))}
+          <Button asChild size='sm' className='mt-2'>
+            <Link href='/search' onClick={() => setOpen(false)}>
+              Start Home Search
+            </Link>
+          </Button>
+        </nav>
+      </div>
+    </header>
+  );
+}
