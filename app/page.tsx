@@ -1,15 +1,14 @@
-import Link from 'next/link';
 import { getFeaturedListings } from '@/lib/idx';
-import { communities } from '@/lib/content/communities';
 import { Hero } from '@/components/sections/hero';
 import { ListingCard } from '@/components/sections/listing-card';
-import { CommunityCard } from '@/components/sections/community-card';
 import { SectionReveal } from '@/components/layout/section-reveal';
 import { CtaBand } from '@/components/sections/cta-band';
-import { Card, CardContent } from '@/components/ui/card';
 import { JsonLdScript } from '@/components/sections/json-ld-script';
 import { localBusinessJsonLd, organizationJsonLd } from '@/lib/seo/json-ld';
 import { Badge } from '@/components/ui/badge';
+import { TopAreas } from '@/components/sections/top-areas';
+import { TestimonialCarousel } from '@/components/sections/testimonial-carousel';
+import { CrystalRiverGallery } from '@/components/sections/crystal-river-gallery';
 
 export default async function HomePage() {
   const featured = await getFeaturedListings();
@@ -20,22 +19,11 @@ export default async function HomePage() {
       <Hero />
       <div className='mx-auto max-w-7xl space-y-20 px-4 py-16 md:px-6'>
         <SectionReveal>
-          <section>
-            <div className='mb-8 flex items-center justify-between'>
-              <div>
-                <Badge>Featured Communities</Badge>
-                <h2 className='mt-3 text-3xl font-semibold'>Find the right Florida fit</h2>
-              </div>
-              <Link href='/search' className='text-sm font-semibold text-primary'>
-                Start search
-              </Link>
-            </div>
-            <div className='grid gap-5 md:grid-cols-2 lg:grid-cols-4'>
-              {communities.slice(0, 4).map((community) => (
-                <CommunityCard key={community.slug} community={community} />
-              ))}
-            </div>
-          </section>
+          <TopAreas />
+        </SectionReveal>
+
+        <SectionReveal>
+          <CrystalRiverGallery />
         </SectionReveal>
 
         <SectionReveal>
@@ -56,20 +44,7 @@ export default async function HomePage() {
         </SectionReveal>
 
         <SectionReveal>
-          <section className='grid gap-6 lg:grid-cols-3'>
-            {[
-              'They answered every question quickly and gave us a clear strategy from day one.',
-              'Communication was consistent, direct, and never pushy. We always knew our next step.',
-              'They helped us price, prepare, and negotiate with confidence.'
-            ].map((quote, i) => (
-              <Card key={i}>
-                <CardContent className='p-6'>
-                  <p className='text-sm leading-relaxed text-muted-foreground'>“{quote}”</p>
-                  <p className='mt-4 text-sm font-semibold'>Client testimonial placeholder</p>
-                </CardContent>
-              </Card>
-            ))}
-          </section>
+          <TestimonialCarousel />
         </SectionReveal>
 
         <SectionReveal>
@@ -89,6 +64,43 @@ export default async function HomePage() {
                 <p><strong>Can I start with a quick strategy call?</strong><br />Yes, use the schedule page to pick a time.</p>
                 <p><strong>Do you cover multiple communities?</strong><br />Yes, including Dunnellon, Ocala, Inverness, and nearby areas.</p>
               </div>
+            </div>
+          </section>
+        </SectionReveal>
+
+        <SectionReveal>
+          <section className='rounded-2xl border bg-white p-8'>
+            <h2 className='text-3xl font-semibold'>How We Help Buyers and Sellers</h2>
+            <div className='mt-6 grid gap-6 md:grid-cols-2'>
+              <div className='rounded-xl border bg-slate-50/70 p-6'>
+                <h3 className='text-xl font-semibold'>For Buyers</h3>
+                <p className='mt-3 text-sm leading-relaxed text-muted-foreground md:text-base'>
+                  We help buyers narrow their search, avoid wasted time, and focus on homes that actually fit their goals — whether that’s single-family residences, manufactured homes, or specific lifestyle needs. Our search tools and guidance are designed to simplify decisions, not overwhelm you.
+                </p>
+              </div>
+              <div className='rounded-xl border bg-slate-50/70 p-6'>
+                <h3 className='text-xl font-semibold'>For Sellers</h3>
+                <p className='mt-3 text-sm leading-relaxed text-muted-foreground md:text-base'>
+                  Sellers benefit from clear pricing strategy, honest feedback, and modern marketing that attracts serious buyers. We focus on positioning your home correctly from day one to reduce time on market and maximize value.
+                </p>
+              </div>
+            </div>
+          </section>
+        </SectionReveal>
+
+        <SectionReveal>
+          <section className='rounded-2xl border bg-white p-8'>
+            <h2 className='text-3xl font-semibold'>Why Work With Move Clearly?</h2>
+            <div className='mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base'>
+              <p>
+                Buying or selling a home doesn’t need to feel overwhelming. We focus on clear communication, realistic expectations, and smart strategy so you can make confident decisions at every step.
+              </p>
+              <p>
+                As a husband-and-wife team with deep local knowledge of Citrus County and surrounding areas, we combine hands-on service with modern tools to help you move efficiently and with less stress.
+              </p>
+              <p>
+                Whether you’re searching for your next home, selling a property, or just need honest guidance, our goal is simple: make the process clear and keep your best interests front and center.
+              </p>
             </div>
           </section>
         </SectionReveal>

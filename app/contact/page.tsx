@@ -1,5 +1,6 @@
 import { buildMetadata } from '@/lib/seo/metadata';
 import { LeadForm } from '@/components/forms/lead-form';
+import { siteConfig } from '@/lib/constants';
 
 export const metadata = buildMetadata({
   title: 'Contact | Move Clearly',
@@ -16,18 +17,38 @@ export default function ContactPage() {
       </p>
 
       <div className='mt-8 grid gap-8 lg:grid-cols-[1fr_420px]'>
-        <div className='rounded-xl border p-6'>
-          <h2 className='text-xl font-semibold'>Service Areas</h2>
-          <ul className='mt-4 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2'>
-            <li>Dunnellon</li>
-            <li>Citrus Springs</li>
-            <li>Crystal River</li>
-            <li>Lecanto</li>
-            <li>Beverly Hills</li>
-            <li>Hernando</li>
-            <li>Inverness</li>
-            <li>Ocala</li>
-          </ul>
+        <div className='space-y-6'>
+          <div className='rounded-xl border p-6'>
+            <h2 className='text-xl font-semibold'>Direct Contact</h2>
+            <ul className='mt-4 space-y-2 text-sm text-muted-foreground'>
+              <li>
+                Call/Text:{' '}
+                <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} className='underline underline-offset-4'>
+                  {siteConfig.phone}
+                </a>
+              </li>
+              <li>
+                Email:{' '}
+                <a href={`mailto:${siteConfig.email}`} className='underline underline-offset-4'>
+                  {siteConfig.email}
+                </a>
+              </li>
+              <li>Brokerage: {siteConfig.brokerage}</li>
+            </ul>
+          </div>
+          <div className='rounded-xl border p-6'>
+            <h2 className='text-xl font-semibold'>Service Areas</h2>
+            <ul className='mt-4 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2'>
+              <li>Dunnellon</li>
+              <li>Citrus Springs</li>
+              <li>Crystal River</li>
+              <li>Lecanto</li>
+              <li>Beverly Hills</li>
+              <li>Hernando</li>
+              <li>Inverness</li>
+              <li>Ocala</li>
+            </ul>
+          </div>
         </div>
         <LeadForm type='contact' source='/contact' submitLabel='Send Message' />
       </div>

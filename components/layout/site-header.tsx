@@ -11,28 +11,32 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className='sticky top-0 z-50 border-b bg-background/90 backdrop-blur'>
+    <header className='sticky top-0 z-50 border-b bg-background/95 backdrop-blur'>
       <div className='mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6'>
         <Link href='/' className='text-xl font-bold tracking-tight'>
           Move Clearly
         </Link>
 
-        <nav className='hidden items-center gap-6 md:flex' aria-label='Main navigation'>
+        <nav className='hidden items-center gap-7 md:flex' aria-label='Main navigation'>
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className='text-sm font-medium text-foreground/90 hover:text-foreground'>
+            <Link
+              key={link.href}
+              href={link.href}
+              className='text-xs font-semibold uppercase tracking-[0.12em] text-foreground/80 transition-colors hover:text-foreground'
+            >
               {link.label}
             </Link>
           ))}
         </nav>
 
         <div className='hidden items-center gap-2 md:flex'>
-          <Button asChild variant='outline' size='sm'>
+          <Button asChild variant='outline' size='sm' className='uppercase tracking-[0.08em]'>
             <Link href='/schedule'>
               <PhoneCall className='mr-2 h-4 w-4' />
               Schedule Call
             </Link>
           </Button>
-          <Button asChild size='sm'>
+          <Button asChild size='sm' className='uppercase tracking-[0.08em]'>
             <Link href='/search'>
               <Search className='mr-2 h-4 w-4' />
               Start Home Search
