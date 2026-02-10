@@ -79,3 +79,56 @@ export function articleJsonLd({
     }
   };
 }
+
+export function faqJsonLd(entries: Array<{ question: string; answer: string }>): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: entries.map((entry) => ({
+      '@type': 'Question',
+      name: entry.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: entry.answer
+      }
+    }))
+  };
+}
+
+export function communityGuideJsonLd({
+  name,
+  url,
+  description,
+  attractions
+}: {
+  name: string;
+  url: string;
+  description: string;
+  attractions: Array<{ name: string; link: string; description: string }>;
+}): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: `${name}, FL Community Guide`,
+    url,
+    description,
+    about: {
+      '@type': 'Place',
+      name: `${name}, Florida`
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      name: `${name} attractions`,
+      itemListElement: attractions.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'TouristAttraction',
+          name: item.name,
+          description: item.description,
+          url: item.link
+        }
+      }))
+    }
+  };
+}

@@ -7,21 +7,142 @@ export interface Community {
   bestFor: string[];
   faq: Array<{ question: string; answer: string }>;
   related: string[];
+  marketReport?: {
+    reportName: string;
+    period: string;
+    highlights: string[];
+    stats: Array<{ label: string; value: string; note?: string }>;
+  };
+  attractions?: Array<{ name: string; description: string; link: string }>;
+  featuredDining?: Array<{ name: string; description: string; link: string }>;
+  gallery?: Array<{ title: string; image: string; credit: string; source: string }>;
+  history?: {
+    title: string;
+    narrative: string[];
+    sources: Array<{ label: string; link: string }>;
+  };
 }
 
 export const communities: Community[] = [
   {
     slug: 'dunnellon',
     name: 'Dunnellon',
-    hero: 'Dunnellon offers a balanced pace with natural springs, established neighborhoods, and practical value for both first-time and move-up buyers.',
-    summary: 'Known for its access to Rainbow River and a laid-back lifestyle with room to grow.',
-    lifestyle: ['River recreation and paddling access', 'Mix of established and newer homes', 'Comfortable drive to Ocala and Citrus County'],
-    bestFor: ['Buyers seeking a quieter daily rhythm', 'Families wanting space and outdoor access'],
-    faq: [
-      { question: 'Is Dunnellon good for full-time living?', answer: 'Yes. Many buyers choose Dunnellon for year-round living thanks to value, space, and proximity to recreation.' },
-      { question: 'Are there homes with land?', answer: 'Yes. Inventory often includes homes with larger lots and properties outside dense subdivisions.' }
+    hero: 'Dunnellon blends spring-fed river life with small-town character, where buyers can find attainable homes, direct access to Rainbow River recreation, and a historic downtown tied to the old rail corridor.',
+    summary: 'A two-river town known for Rainbow Springs, Withlacoochee views, and a practical range of home prices.',
+    lifestyle: [
+      'Kayaking, tubing, and paddle access along Rainbow River and the Withlacoochee',
+      'Historic district charm with railroad-era roots and annual Boomtown traditions',
+      'A broad mix of price points from entry-level homes to river-adjacent move-up properties'
     ],
-    related: ['citrus-springs', 'ocala']
+    bestFor: [
+      'Buyers who want outdoor lifestyle and everyday value in the same market',
+      'Households looking for a relaxed pace without losing regional access to Ocala and Citrus County'
+    ],
+    faq: [
+      {
+        question: 'Is Dunnellon good for full-time living?',
+        answer: 'Yes. Dunnellon supports year-round living with a stable local market, river recreation, and straightforward access to nearby employment centers.'
+      },
+      {
+        question: 'What does current inventory look like in Dunnellon?',
+        answer: 'Your latest trend report shows 1,952 active residential listings in the combined MLS set used by the report period, giving buyers meaningful selection.'
+      },
+      {
+        question: 'Are most sales in luxury price points?',
+        answer: 'No. Recent closings are concentrated in practical mid-range bands, especially from the low-$200Ks through mid-$300Ks.'
+      }
+    ],
+    related: ['citrus-springs', 'ocala'],
+    marketReport: {
+      reportName: 'Real Estate Trend Indicator (Residential, For Sale)',
+      period: 'January 1, 2026 to February 10, 2026',
+      highlights: [
+        '332 closed residential sales in the report period with an overall average sold price of $326,525.',
+        '1,952 active listings indicate a broad selection for buyers, with 132 pending at report time.',
+        'The strongest sold price bracket was $300,000-$349,999 with 42 closed sales.',
+        'Cash remains a major financing driver at 145 transactions (about 44% of all closings).'
+      ],
+      stats: [
+        { label: 'Closed sales', value: '332' },
+        { label: 'Active listings', value: '1,952' },
+        { label: 'Pending listings', value: '132' },
+        { label: 'Average sold price', value: '$326,525' },
+        { label: 'Median speed profile', value: '166 sold in <=60 days', note: '103 (0-30 days) + 63 (31-60 days)' },
+        { label: 'Top financing', value: 'Cash (145)', note: 'Conventional (107), FHA (37), VA (28)' }
+      ]
+    },
+    attractions: [
+      {
+        name: 'Rainbow Springs State Park',
+        description: 'One of Florida\'s first-magnitude spring systems with 72-degree water, headsprings swimming, paddling, and scenic gardens.',
+        link: 'https://www.floridastateparks.org/parks-and-trails/rainbow-springs-state-park'
+      },
+      {
+        name: 'Blue Run of Dunnellon Park',
+        description: 'Popular tubing take-out and kayak launch with walking trails and direct Rainbow River access.',
+        link: 'https://www.dunnellon.org/Home/Components/FacilityDirectory/FacilityDirectory/4/'
+      },
+      {
+        name: 'Dunnellon Trail & Withlacoochee River Bridge',
+        description: 'A 2.4-mile paved multi-use trail on a historic railroad bed with standout views crossing the Withlacoochee.',
+        link: 'https://www.floridastateparks.org/parks-and-trails/dunnellon-trail'
+      },
+      {
+        name: 'Historic Railroad Story',
+        description: 'Dunnellon\'s growth as a rail and phosphate hub is still reflected in local landmarks and downtown character.',
+        link: 'https://www.dunnellon.org/visitors/history-of-dunnellon'
+      }
+    ],
+    featuredDining: [
+      {
+        name: 'Blue Gator Tiki Bar & Restaurant',
+        description: 'Withlacoochee riverfront dining with live-music energy and outdoor seating.',
+        link: 'https://www.tripadvisor.com/Restaurant_Review-g34188-d2390327-Reviews-Blue_Gator_Tiki_Bar_Restaurant-Dunnellon_Florida.html'
+      },
+      {
+        name: 'The Front Porch Restaurant & Pie Shop',
+        description: 'A long-running local favorite for comfort food and house-made pies.',
+        link: 'https://www.tripadvisor.com/Restaurant_Review-g34188-d1959855-Reviews-The_Front_Porch_Restaurant_Pie_Shop-Dunnellon_Florida.html'
+      },
+      {
+        name: 'Stumpknockers Restaurant',
+        description: 'Classic Florida seafood and American fare with broad local following.',
+        link: 'https://www.tripadvisor.com/Restaurant_Review-g34188-d517168-Reviews-Stumpknockers_Restaurant-Dunnellon_Florida.html'
+      }
+    ],
+    gallery: [
+      {
+        title: 'Rainbow Springs Swimming Area',
+        image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rainbow%20Springs%20State%20Park%20pano01.jpg',
+        credit: 'Photo: Ebyabe (Wikimedia Commons, CC BY/CC BY-SA options)',
+        source: 'https://commons.wikimedia.org/wiki/File:Rainbow_Springs_State_Park_pano01.jpg'
+      },
+      {
+        title: 'Crossing the Withlacoochee in Dunnellon',
+        image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Crossing%20the%20Withlacoochie%20River%20in%20Dunnellon%20-%20panoramio.jpg',
+        credit: 'Photo: Art Anderson / Panoramio archive via Wikimedia Commons',
+        source: 'https://commons.wikimedia.org/wiki/File:Crossing_the_Withlacoochie_River_in_Dunnellon_-_panoramio.jpg'
+      },
+      {
+        title: 'Historic Dunnellon Train Depot',
+        image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dunnellon%20train%20depot%20pano01.jpg',
+        credit: 'Photo: Ebyabe (Wikimedia Commons, CC BY-SA 2.5)',
+        source: 'https://commons.wikimedia.org/wiki/File:Dunnellon_train_depot_pano01.jpg'
+      }
+    ],
+    history: {
+      title: 'Boomtown roots and railroad legacy',
+      narrative: [
+        'Dunnellon was founded in the late 1880s and incorporated in 1891. The discovery of hard-rock phosphate in 1889 transformed it into one of Florida\'s early boomtowns.',
+        'Phosphate moved by river and rail, and Dunnellon became a transportation hub. The 1908 Atlantic Coast Line depot on South Williams Street still anchors local identity.',
+        'That history remains visible today through the historic district, rail-to-trail corridors, and annual community events like Boomtown Days.'
+      ],
+      sources: [
+        { label: 'City of Dunnellon history', link: 'https://www.dunnellon.org/visitors/history-of-dunnellon' },
+        { label: 'Dunnellon Trail (former railroad bed)', link: 'https://www.floridastateparks.org/parks-and-trails/dunnellon-trail' },
+        { label: 'Ocala/Marion Dunnellon guide', link: 'https://www.ocalamarion.com/plan-your-visit/area/dunnellon/' }
+      ]
+    }
   },
   {
     slug: 'citrus-springs',
