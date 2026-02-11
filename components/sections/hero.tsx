@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Script from 'next/script';
 
 const IDX_SEARCH_WIDGET_SRC = 'https://moveclearly.idxbroker.com/idx/widgets/142071';
 
@@ -27,7 +26,8 @@ export function Hero() {
           </h1>
 
           <div className='mx-auto mt-7 w-full max-w-5xl rounded-2xl border border-white/25 bg-white/93 p-4 shadow-2xl backdrop-blur-sm md:p-6'>
-            <Script id='idxwidgetsrc-142071' src={IDX_SEARCH_WIDGET_SRC} strategy='afterInteractive' />
+            {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+            <script id='idxwidgetsrc-142071' charSet='UTF-8' type='text/javascript' src={IDX_SEARCH_WIDGET_SRC} />
           </div>
         </div>
       </div>
