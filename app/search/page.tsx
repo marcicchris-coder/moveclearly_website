@@ -1,5 +1,6 @@
 import { buildMetadata } from '@/lib/seo/metadata';
-import { getIdxHostedSearchUrl } from '@/lib/idx';
+import { getIdxHostedSearchUrl, getListingById } from '@/lib/idx';
+import { ListingCard } from '@/components/sections/listing-card';
 
 export const metadata = buildMetadata({
   title: 'Search | Move Clearly',
@@ -10,12 +11,15 @@ export const metadata = buildMetadata({
 type SearchPageProps = {
   searchParams?: {
     q?: string;
+    highlight?: string;
   };
 };
 
-export default function SearchPage({ searchParams }: SearchPageProps) {
+export default async function SearchPage({ searchParams }: SearchPageProps) {
   const hostedSearchUrl = getIdxHostedSearchUrl();
-  const query = searchParams?.q?.trim() || '';
+  const highlightId = searchParams?.highlight?.trim() || '';
+  const query = searchParams?.q?.trim() || highlightId;
+  const highlightedListing = highlightId ? await getListingById(highlightId) : null;
   const iframeSrc = (() => {
     if (!hostedSearchUrl) return '';
 
@@ -36,6 +40,21 @@ export default function SearchPage({ searchParams }: SearchPageProps) {
           Use the interactive map search to browse active listings.
         </p>
       </div>
+
+      {highlightId ? (
+        <div className='mx-auto mt-6 max-w-7xl px-4 md:px-6'>
+          <p className='mb-3 text-sm font-medium text-primary'>Highlighted listing from featured homes</p>
+          {highlightedListing ? (
+            <div className='max-w-xl'>
+              <ListingCard listing={highlightedListing} highlighted />
+            </div>
+          ) : (
+            <div className='rounded-xl border bg-white p-4 text-sm text-muted-foreground'>
+              Listing <code>{highlightId}</code> is no longer available. Use the map below to continue your search.
+            </div>
+          )}
+        </div>
+      ) : null}
 
       {hostedSearchUrl ? (
         <div className='relative left-1/2 right-1/2 mt-6 w-screen -translate-x-1/2 overflow-hidden border-y bg-white'>

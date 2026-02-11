@@ -7,9 +7,12 @@ import { Badge } from '@/components/ui/badge';
 import { TopAreas } from '@/components/sections/top-areas';
 import { TestimonialCarousel } from '@/components/sections/testimonial-carousel';
 import { CrystalRiverGallery } from '@/components/sections/crystal-river-gallery';
-import { IdxFeaturedWidget } from '@/components/sections/idx-featured-widget';
+import { getFeaturedListings } from '@/lib/idx';
+import { ListingCard } from '@/components/sections/listing-card';
 
 export default async function HomePage() {
+  const featuredListings = await getFeaturedListings();
+
   return (
     <>
       <JsonLdScript data={[organizationJsonLd(), localBusinessJsonLd()]} />
@@ -34,7 +37,28 @@ export default async function HomePage() {
                 property details in one place.
               </p>
             </div>
-            <IdxFeaturedWidget />
+            {featuredListings.length > 0 ? (
+              <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
+                {featuredListings.map((listing) => {
+                  const searchParams = new URLSearchParams({
+                    highlight: listing.id,
+                    q: listing.id
+                  });
+
+                  return (
+                    <ListingCard
+                      key={listing.id}
+                      listing={listing}
+                      href={`/search?${searchParams.toString()}`}
+                    />
+                  );
+                })}
+              </div>
+            ) : (
+              <div className='rounded-xl border bg-white p-6 text-sm text-muted-foreground'>
+                Featured listings are loading. Please check back shortly.
+              </div>
+            )}
           </section>
         </SectionReveal>
 

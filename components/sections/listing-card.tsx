@@ -6,13 +6,21 @@ import { motion } from 'framer-motion';
 import { BedDouble, Bath, Ruler } from 'lucide-react';
 import { Listing } from '@/lib/idx/types';
 import { Card, CardContent } from '@/components/ui/card';
-import { formatCurrency, formatNumber } from '@/lib/utils';
+import { cn, formatCurrency, formatNumber } from '@/lib/utils';
 
-export function ListingCard({ listing }: { listing: Listing }) {
+type ListingCardProps = {
+  listing: Listing;
+  href?: string;
+  highlighted?: boolean;
+};
+
+export function ListingCard({ listing, href, highlighted = false }: ListingCardProps) {
+  const destination = href || `/listings/${listing.id}`;
+
   return (
     <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
-      <Card className='overflow-hidden'>
-        <Link href={`/listings/${listing.id}`}>
+      <Card className={cn('overflow-hidden transition-shadow', highlighted && 'ring-2 ring-primary/60 shadow-lg')}>
+        <Link href={destination}>
           <div className='relative h-56 overflow-hidden'>
             <Image
               src={listing.images[0]}
