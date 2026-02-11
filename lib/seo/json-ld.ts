@@ -1,4 +1,5 @@
 import { siteConfig } from '@/lib/constants';
+import { Listing } from '@/lib/idx/types';
 
 export type JsonLd = Record<string, unknown>;
 
@@ -130,5 +131,41 @@ export function communityGuideJsonLd({
         }
       }))
     }
+  };
+}
+
+export function listingJsonLd(listing: Listing): JsonLd {
+  const listingUrl = `${siteConfig.url}/listings/${listing.id}`;
+  const image = listing.images[0];
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SingleFamilyResidence',
+    name: `${listing.address}, ${listing.city}`,
+    description: listing.description,
+    image: image ? [image] : undefined,
+    floorSize: listing.sqft
+      ? {
+          '@type': 'QuantitativeValue',
+          value: listing.sqft,
+          unitCode: 'FTK'
+        }
+      : undefined,
+    numberOfRooms: listing.beds || undefined,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: listing.address,
+      addressLocality: listing.city,
+      addressRegion: listing.state,
+      postalCode: listing.zip,
+      addressCountry: 'US'
+    },
+    offers: {
+      '@type': 'Offer',
+      price: listing.price,
+      priceCurrency: 'USD',
+      url: listingUrl
+    },
+    url: listingUrl
   };
 }

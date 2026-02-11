@@ -68,6 +68,18 @@ Copy `.env.example` to `.env.local` and set values:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://moveclearly.com
+IDX_PROVIDER=idxbroker
+IDX_SEARCH_MODE=api
+IDXBROKER_API_KEY=
+IDXBROKER_API_BASE_URL=https://api.idxbroker.com
+IDXBROKER_OUTPUT_TYPE=json
+IDXBROKER_API_VERSION=
+IDXBROKER_ANCILLARY_KEY=
+IDXBROKER_API_SEARCH_PATH=/clients/search
+IDXBROKER_API_FEATURED_PATH=/clients/featured
+IDXBROKER_API_LISTING_PATH_TEMPLATE=/clients/listing/{id}
+NEXT_PUBLIC_IDXBROKER_LISTING_URL_TEMPLATE=
+NEXT_PUBLIC_IDXBROKER_SEARCH_URL=
 SUPABASE_URL=
 SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
@@ -107,7 +119,7 @@ Open `http://localhost:3000`.
 3. Ensure the GitHub repo is connected and production branch is selected.
 4. Enable preview deployments for pull requests.
 
-## IDX Integration Notes (StellarMLS Vendor Agnostic)
+## IDX Integration Notes (IDX Broker)
 
 Current IDX abstraction lives in:
 
@@ -115,12 +127,38 @@ Current IDX abstraction lives in:
 - `lib/idx/provider.ts`
 - `lib/idx/index.ts`
 
-To integrate a live vendor later:
+Current support:
 
-1. Replace mock provider internals in `lib/idx/provider.ts` with vendor API calls.
-2. Map vendor payload fields to the `Listing` interface.
-3. Keep route/UI layer unchanged (`/search`, `/listings`, `/listings/[id]`).
-4. If vendor requires embed/widgets, mount it in `/search` placeholder panel and listing map placeholder.
+1. `/search`, `/listings`, and `/listings/[id]` render server-side from IDX Broker API data.
+2. `IDX_PROVIDER=idxbroker` + `IDXBROKER_API_KEY` enables live inventory data.
+3. `NEXT_PUBLIC_IDXBROKER_LISTING_URL_TEMPLATE` optionally adds outbound links to the vendor-hosted listing detail page (format: `https://yourdomain.com/idx/details/listing/XXX/{id}`).
+4. Filtered `/search` result URLs are `noindex` to reduce duplicate-index pages and preserve crawl budget.
+5. Listing pages are automatically `noindex` when API data is unavailable and the site falls back to mock data.
+
+### Recommended Production Pattern (Engage)
+
+For most Engage setups, a hybrid integration is the safest and most effective:
+
+1. Use IDX-hosted search pages (saved links / widgets) for full MLS search UX + compliance.
+2. Keep API usage for curated sections (featured inventory, custom cards, selective landing pages).
+3. Keep your site branding, forms, SEO pages, and conversion funnel native in Next.js.
+
+This project now supports that model:
+
+1. Set `IDX_SEARCH_MODE=hosted`.
+2. Set `NEXT_PUBLIC_IDXBROKER_SEARCH_URL` to your IDX-hosted search URL.
+3. `/search` will server-redirect to the hosted IDX search page.
+4. Set `IDX_SEARCH_MODE=api` to keep native API-driven `/search`.
+
+Recommended setup checklist:
+
+1. Add `IDXBROKER_API_KEY` only as a server env var (never expose in public runtime vars).
+2. If your account or partner process requires a fixed version, set `IDXBROKER_API_VERSION` so responses stay stable over time.
+3. If you are a development partner calling on behalf of clients, set `IDXBROKER_ANCILLARY_KEY` to unlock partner overrides and higher hourly limits.
+4. Keep `IDXBROKER_OUTPUT_TYPE=json` unless you intentionally consume XML.
+5. Set API paths to your approved IDX Broker endpoints in staging first.
+6. Confirm API payload field names and adjust mapping in `lib/idx/provider.ts` if your account response differs.
+7. Validate MLS-required attribution/disclaimer language before production cutover.
 
 ## Performance Notes
 

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, PhoneCall, Search } from 'lucide-react';
+import { Home, Menu, PhoneCall } from 'lucide-react';
 import { useState } from 'react';
 import { navLinks } from '@/lib/constants';
 import { Button } from '@/components/ui/button';
@@ -37,9 +37,9 @@ export function SiteHeader() {
             </Link>
           </Button>
           <Button asChild size='sm' className='uppercase tracking-[0.08em]'>
-            <Link href='/search'>
-              <Search className='mr-2 h-4 w-4' />
-              Start Home Search
+            <Link href='/listings'>
+              <Home className='mr-2 h-4 w-4' />
+              View Listings
             </Link>
           </Button>
         </div>
@@ -63,8 +63,8 @@ export function SiteHeader() {
             </Link>
           ))}
           <Button asChild size='sm' className='mt-2'>
-            <Link href='/search' onClick={() => setOpen(false)}>
-              Start Home Search
+            <Link href='/listings' onClick={() => setOpen(false)}>
+              View Listings
             </Link>
           </Button>
         </nav>

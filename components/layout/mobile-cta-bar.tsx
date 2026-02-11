@@ -9,7 +9,7 @@ export function MobileCtaBar() {
           <Link href='/home-value'>Get Home Value</Link>
         </Button>
         <Button asChild className='w-full'>
-          <Link href='/search'>Start Search</Link>
+          <Link href='/listings'>View Listings</Link>
         </Button>
       </div>
     </div>

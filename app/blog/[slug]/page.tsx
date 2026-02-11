@@ -58,7 +58,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         <div className='mt-3 flex flex-wrap gap-3'>
           <Link href='/communities/ocala' className='text-sm font-semibold text-primary'>Ocala Guide</Link>
           <Link href='/communities/dunnellon' className='text-sm font-semibold text-primary'>Dunnellon Guide</Link>
-          <Link href='/search' className='text-sm font-semibold text-primary'>Search homes</Link>
+          <Link href='/listings' className='text-sm font-semibold text-primary'>View listings</Link>
         </div>
       </div>
     </div>

@@ -71,7 +71,7 @@ export default function CommunityPage({ params }: { params: { slug: string } }) 
           <p className='mt-3 max-w-3xl text-sm text-muted-foreground'>{community.summary}</p>
           <div className='mt-6'>
             <Button asChild>
-              <Link href={`/search?area=${encodeURIComponent(community.name)}`}>Browse listings in this area</Link>
+              <Link href='/listings'>Browse listings</Link>
             </Button>
           </div>
         </section>

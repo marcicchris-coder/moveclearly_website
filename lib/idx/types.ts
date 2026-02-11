@@ -14,6 +14,7 @@ export interface Listing {
   community: string;
   lat?: number;
   lng?: number;
+  externalUrl?: string;
 }
 
 export interface ListingSearchFilters {

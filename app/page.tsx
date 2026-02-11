@@ -1,6 +1,4 @@
-import { getFeaturedListings } from '@/lib/idx';
 import { Hero } from '@/components/sections/hero';
-import { ListingCard } from '@/components/sections/listing-card';
 import { SectionReveal } from '@/components/layout/section-reveal';
 import { CtaBand } from '@/components/sections/cta-band';
 import { JsonLdScript } from '@/components/sections/json-ld-script';
@@ -9,10 +7,9 @@ import { Badge } from '@/components/ui/badge';
 import { TopAreas } from '@/components/sections/top-areas';
 import { TestimonialCarousel } from '@/components/sections/testimonial-carousel';
 import { CrystalRiverGallery } from '@/components/sections/crystal-river-gallery';
+import { IdxFeaturedWidget } from '@/components/sections/idx-featured-widget';
 
 export default async function HomePage() {
-  const featured = await getFeaturedListings();
-
   return (
     <>
       <JsonLdScript data={[organizationJsonLd(), localBusinessJsonLd()]} />
@@ -32,14 +29,12 @@ export default async function HomePage() {
               <Badge>Featured Listings</Badge>
               <h2 className='mt-3 text-3xl font-semibold'>Highlighted homes</h2>
               <p className='mt-2 text-muted-foreground'>
-                Mock IDX feed is active now. Swap the provider later without changing page templates.
+                Explore featured homes for sale in Crystal River, Dunnellon, Inverness, and nearby Citrus County and Ocala
+                communities. This live MLS feed updates through IDX Broker so buyers can view current pricing, photos, and
+                property details in one place.
               </p>
             </div>
-            <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
-              {featured.map((listing) => (
-                <ListingCard key={listing.id} listing={listing} />
-              ))}
-            </div>
+            <IdxFeaturedWidget />
           </section>
         </SectionReveal>
 

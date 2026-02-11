@@ -19,7 +19,7 @@ export function SiteFooter() {
         <div>
           <h3 className='text-sm font-semibold uppercase tracking-wide'>Explore</h3>
           <ul className='mt-3 space-y-2 text-sm'>
-            <li><Link href='/search'>Search Homes</Link></li>
+            <li><Link href='/listings'>Listings</Link></li>
             <li><Link href='/communities/dunnellon'>Top Areas</Link></li>
             <li><Link href='/blog'>Blog</Link></li>
             <li><Link href='/contact'>Contact</Link></li>

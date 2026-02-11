@@ -74,7 +74,7 @@ export function TopAreas() {
             <CardContent className='space-y-4'>
               <p className='text-sm text-muted-foreground'>{area.desc}</p>
               <Link
-                href={`/search?area=${encodeURIComponent(area.name)}`}
+                href='/listings'
                 className='inline-flex items-center text-sm font-semibold text-primary underline-offset-4 hover:underline'
               >
                 Explore

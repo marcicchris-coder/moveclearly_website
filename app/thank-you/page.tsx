@@ -25,7 +25,7 @@ export default function ThankYouPage({ searchParams }: { searchParams: { type?: 
       <p className='mt-3 text-muted-foreground'>{message}</p>
       <div className='mt-6 flex gap-3'>
         <Button asChild>
-          <Link href='/search'>Continue Searching</Link>
+          <Link href='/listings'>View Listings</Link>
         </Button>
         <Button asChild variant='outline'>
           <Link href='/contact'>Contact Team</Link>
