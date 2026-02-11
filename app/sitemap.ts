@@ -5,7 +5,7 @@ import { getAllPosts } from '@/lib/content/blog';
 import { searchListings, isUsingMockIdxData } from '@/lib/idx';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticRoutes = ['/', '/listings', '/about', '/contact', '/blog', '/home-value', '/buyer-guide', '/schedule'];
+  const staticRoutes = ['/', '/search', '/listings', '/about', '/contact', '/blog', '/home-value', '/buyer-guide', '/schedule'];
   const posts = await getAllPosts();
 
   const staticEntries = staticRoutes.map((route) => ({

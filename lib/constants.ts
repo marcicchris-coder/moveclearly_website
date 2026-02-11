@@ -36,6 +36,7 @@ export const teamMembers = [
 
 export const navLinks = [
   { href: '/communities/dunnellon', label: 'Communities' },
+  { href: '/search', label: 'Search' },
   { href: '/listings', label: 'Listings' },
   { href: '/blog', label: 'Blog' },
   { href: '/about', label: 'About' },
