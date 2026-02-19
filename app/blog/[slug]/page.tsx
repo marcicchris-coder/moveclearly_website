@@ -1,11 +1,10 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import remarkGfm from 'remark-gfm';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { articleJsonLd } from '@/lib/seo/json-ld';
 import { JsonLdScript } from '@/components/sections/json-ld-script';
 import { getAllPosts, getPostBySlug } from '@/lib/content/blog';
+import { MarkdownContent } from '@/components/sections/markdown-content';
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -50,7 +49,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       <p className='mt-3 text-muted-foreground'>{post.description}</p>
 
       <article className='prose prose-slate mt-8 max-w-none prose-headings:font-semibold prose-a:text-primary'>
-        <MDXRemote source={post.content} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
+        <MarkdownContent source={post.content} />
       </article>
 
       <div className='mt-10 rounded-xl border p-5'>

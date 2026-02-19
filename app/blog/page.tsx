@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import remarkGfm from 'remark-gfm';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { getAllPostsWithContent } from '@/lib/content/blog';
 import { Badge } from '@/components/ui/badge';
+import { MarkdownContent } from '@/components/sections/markdown-content';
 
 export const metadata = buildMetadata({
   title: 'Blog | Move Clearly',
@@ -51,7 +50,7 @@ export default async function BlogIndexPage() {
             <p className='mt-4 text-muted-foreground'>{post.description}</p>
 
             <div className='prose prose-slate mt-8 max-w-none prose-headings:font-semibold prose-a:text-primary'>
-              <MDXRemote source={post.content} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
+              <MarkdownContent source={post.content} />
             </div>
           </section>
         ))}
