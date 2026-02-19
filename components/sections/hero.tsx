@@ -38,13 +38,10 @@ export function Hero() {
           </p>
           <div className='mt-8 flex flex-wrap gap-3'>
             <Button asChild size='lg'>
-              <Link href='/search'>Start Search</Link>
+              <Link href='/listings'>View Listings</Link>
             </Button>
             <Button asChild variant='outline' size='lg'>
-              <Link href='/contact'>Sell</Link>
-            </Button>
-            <Button asChild variant='secondary' size='lg'>
-              <Link href='/home-value'>Get Home Value</Link>
+              <Link href='/communities/dunnellon'>Browse Communities</Link>
             </Button>
           </div>
         </motion.div>

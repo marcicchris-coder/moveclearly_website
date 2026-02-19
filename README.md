@@ -1,14 +1,12 @@
 # Move Clearly Real Estate Website
 
-Production-grade Next.js 14 real estate site for **Move Clearly** focused on technical SEO, conversion funneling, and IDX-ready architecture.
+Production-grade Next.js 14 real estate site for **Move Clearly** focused on technical SEO and IDX-ready architecture.
 
 ## Stack
 
 - Next.js 14 (App Router) + TypeScript
 - Tailwind CSS + reusable UI components
 - Framer Motion (subtle UX motion)
-- Supabase (lead storage)
-- Zod validation + honeypot + in-memory rate limiting
 - MDX blog (file-based content)
 
 ## Features Implemented
@@ -19,25 +17,13 @@ Production-grade Next.js 14 real estate site for **Move Clearly** focused on tec
   - Dynamic metadata for blog posts, listings, and communities
   - `sitemap.xml` + `robots.txt`
   - Canonical/host redirect middleware for `moveclearlyfl.com -> moveclearly.com`
-- Conversion system
-  - Sticky header CTAs
-  - Sticky mobile bottom CTA bar
-  - Exit-intent modal (desktop, frequency capped via `localStorage`)
-  - Multi-step seller form (`/home-value`)
-  - Buyer guide gated capture (`/buyer-guide`)
-  - Thank-you routing (`/thank-you?type=...`)
+- Site structure
+  - Informational pages and listing browsing
+  - Direct phone/email contact details with no lead-capture forms
 - IDX-ready architecture
   - `lib/idx` interface-first provider layer
   - Mock provider with realistic listing records
   - Search/listing pages designed for future StellarMLS integration
-- Lead API
-  - `POST /api/leads`
-  - Zod validation
-  - Honeypot field (`website`)
-  - Basic in-memory rate limiting
-  - Supabase insert to `leads` table
-  - Optional Zapier webhook forward
-
 ## Pages
 
 - `/` Home
@@ -80,10 +66,6 @@ IDXBROKER_API_FEATURED_PATH=/clients/featured
 IDXBROKER_API_LISTING_PATH_TEMPLATE=/clients/listing/{id}
 NEXT_PUBLIC_IDXBROKER_LISTING_URL_TEMPLATE=
 NEXT_PUBLIC_IDXBROKER_SEARCH_URL=
-SUPABASE_URL=
-SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
-ZAPIER_WEBHOOK_URL=
 NEXT_PUBLIC_GA4_ID=
 NEXT_PUBLIC_GTM_ID=
 ```
@@ -96,13 +78,6 @@ npm run dev
 ```
 
 Open `http://localhost:3000`.
-
-## Supabase Setup
-
-1. Create a Supabase project.
-2. Run SQL from `supabase/schema.sql` in the SQL editor.
-3. Add `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` to `.env.local`.
-4. (Optional) Add `ZAPIER_WEBHOOK_URL` for forwarding lead payloads.
 
 ## Deploy to Vercel
 
@@ -141,7 +116,7 @@ For most Engage setups, a hybrid integration is the safest and most effective:
 
 1. Use IDX-hosted search pages (saved links / widgets) for full MLS search UX + compliance.
 2. Keep API usage for curated sections (featured inventory, custom cards, selective landing pages).
-3. Keep your site branding, forms, SEO pages, and conversion funnel native in Next.js.
+3. Keep your site branding and SEO pages native in Next.js.
 
 This project now supports that model:
 
@@ -162,7 +137,7 @@ Recommended setup checklist:
 
 ## Performance Notes
 
-- Server Components by default; client usage only where needed (forms, motion, modal, gallery)
+- Server Components by default; client usage only where needed (motion, gallery)
 - `next/image` used for listings
 - `next/font` used for optimized font loading
 - Minimal dependency footprint and route-level rendering

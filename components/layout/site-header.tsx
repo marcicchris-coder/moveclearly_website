@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Home, Menu, PhoneCall } from 'lucide-react';
+import { Home, Menu } from 'lucide-react';
 import { useState } from 'react';
 import { navLinks } from '@/lib/constants';
 import { Button } from '@/components/ui/button';
@@ -31,9 +31,8 @@ export function SiteHeader() {
 
         <div className='hidden items-center gap-2 md:flex'>
           <Button asChild variant='outline' size='sm' className='uppercase tracking-[0.08em]'>
-            <Link href='/schedule'>
-              <PhoneCall className='mr-2 h-4 w-4' />
-              Schedule Call
+            <Link href='/contact'>
+              Contact
             </Link>
           </Button>
           <Button asChild size='sm' className='uppercase tracking-[0.08em]'>

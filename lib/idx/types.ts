@@ -26,7 +26,7 @@ export interface ListingSearchFilters {
   community?: string;
 }
 
-export interface IdxProvider {
+export interface ListingProvider {
   searchListings(filters: ListingSearchFilters): Promise<Listing[]>;
   getListingById(id: string): Promise<Listing | null>;
   getFeaturedListings(): Promise<Listing[]>;

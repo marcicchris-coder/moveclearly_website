@@ -1,9 +1,9 @@
 import { buildMetadata } from '@/lib/seo/metadata';
-import { BuyerGuideGateForm } from '@/components/forms/buyer-guide-gate-form';
+import Link from 'next/link';
 
 export const metadata = buildMetadata({
   title: 'Buyer Guide | Move Clearly',
-  description: 'Gated buyer guide download to support informed home search planning.',
+  description: 'Buyer guide and planning resources.',
   canonicalPath: '/buyer-guide'
 });
 
@@ -13,10 +13,18 @@ export default function BuyerGuidePage() {
       <section>
         <h1 className='text-4xl font-bold tracking-tight'>Florida Buyer Guide</h1>
         <p className='mt-3 max-w-2xl text-muted-foreground'>
-          Get the concise framework we use to help buyers evaluate neighborhoods, financing, and offer timing.
+          Download the buyer guide directly. No form submission is required.
         </p>
       </section>
-      <BuyerGuideGateForm />
+      <section className='rounded-xl border p-6'>
+        <h2 className='text-xl font-semibold'>Download</h2>
+        <p className='mt-2 text-sm text-muted-foreground'>
+          Access the PDF guide with a direct link.
+        </p>
+        <Link href='/buyer-guide.pdf' target='_blank' rel='noopener noreferrer' className='mt-4 inline-block underline underline-offset-4'>
+          Open Buyer Guide PDF
+        </Link>
+      </section>
     </div>
   );
 }

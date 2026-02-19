@@ -1,9 +1,9 @@
 import { buildMetadata } from '@/lib/seo/metadata';
-import { HomeValueMultiStepForm } from '@/components/forms/home-value-multistep-form';
+import Link from 'next/link';
 
 export const metadata = buildMetadata({
-  title: 'Get Home Value | Move Clearly',
-  description: 'Seller lead funnel to request a strategic home value analysis.',
+  title: 'Market Snapshot | Move Clearly',
+  description: 'General guidance on evaluating your home in the current Florida market.',
   canonicalPath: '/home-value'
 });
 
@@ -11,12 +11,34 @@ export default function HomeValuePage() {
   return (
     <div className='mx-auto max-w-5xl space-y-8 px-4 py-12 md:px-6'>
       <section>
-        <h1 className='text-4xl font-bold tracking-tight'>Get Your Home Value Strategy</h1>
+        <h1 className='text-4xl font-bold tracking-tight'>Florida Market Snapshot</h1>
         <p className='mt-3 max-w-2xl text-muted-foreground'>
-          Complete this short two-step form and we will provide a pricing range with clear next steps.
+          Use this overview to understand local pricing trends and the key factors that influence home value in Florida.
         </p>
       </section>
-      <HomeValueMultiStepForm />
+      <section className='rounded-xl border p-6'>
+        <h2 className='text-xl font-semibold'>What influences value</h2>
+        <ul className='mt-4 list-disc space-y-2 pl-5 text-sm text-muted-foreground'>
+          <li>Recent comparable sales in the same neighborhood.</li>
+          <li>Condition, updates, and lot characteristics.</li>
+          <li>Current inventory levels and buyer demand.</li>
+          <li>Seasonality and local financing conditions.</li>
+        </ul>
+      </section>
+      <section className='rounded-xl border p-6'>
+        <h2 className='text-xl font-semibold'>Keep exploring</h2>
+        <p className='mt-2 text-sm text-muted-foreground'>
+          Browse current inventory and community pages for local context.
+        </p>
+        <div className='mt-4 flex flex-wrap gap-3 text-sm'>
+          <Link href='/listings' className='underline underline-offset-4'>
+            View Listings
+          </Link>
+          <Link href='/communities' className='underline underline-offset-4'>
+            Browse Communities
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

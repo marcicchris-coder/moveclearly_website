@@ -1,29 +1,46 @@
 import { buildMetadata } from '@/lib/seo/metadata';
-import { LeadForm } from '@/components/forms/lead-form';
+import { siteConfig } from '@/lib/constants';
 
 export const metadata = buildMetadata({
-  title: 'Schedule a Call | Move Clearly',
-  description: 'Book a strategy call and share your goals in advance.',
+  title: 'How We Work | Move Clearly',
+  description: 'Overview of process and direct contact details.',
   canonicalPath: '/schedule'
 });
 
 export default function SchedulePage() {
   return (
     <div className='mx-auto max-w-6xl px-4 py-12 md:px-6'>
-      <h1 className='text-4xl font-bold tracking-tight'>Schedule a Call</h1>
+      <h1 className='text-4xl font-bold tracking-tight'>How We Work</h1>
       <p className='mt-3 max-w-2xl text-muted-foreground'>
-        Use the calendar placeholder for scheduling integration and submit your priorities below.
+        Learn the process we use to help buyers and sellers move confidently through each stage of a transaction.
       </p>
 
-      <div className='mt-8 grid gap-8 lg:grid-cols-[1fr_400px]'>
-        <div className='rounded-xl border border-dashed p-6'>
-          <h2 className='text-xl font-semibold'>Calendar Embed Placeholder</h2>
-          <p className='mt-2 text-sm text-muted-foreground'>
-            Replace this section with your booking widget (Calendly, etc.) in production.
-          </p>
-          <div className='mt-4 h-64 rounded-lg bg-secondary/60' />
+      <div className='mt-8 grid gap-8 lg:grid-cols-2'>
+        <div className='rounded-xl border p-6'>
+          <h2 className='text-xl font-semibold'>Typical Process</h2>
+          <ol className='mt-4 list-decimal space-y-2 pl-5 text-sm text-muted-foreground'>
+            <li>Define target areas, property type, and budget.</li>
+            <li>Review listings and narrow options.</li>
+            <li>Tour, evaluate, and decide based on fit and timing.</li>
+            <li>Coordinate offer and closing milestones.</li>
+          </ol>
         </div>
-        <LeadForm type='schedule-call' source='/schedule' submitLabel='Request Callback' />
+        <div className='rounded-xl border p-6'>
+          <h2 className='text-xl font-semibold'>Direct Contact</h2>
+          <ul className='mt-4 space-y-2 text-sm text-muted-foreground'>
+            <li>
+              Chris Marcic:{' '}
+              <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} className='underline underline-offset-4'>
+                {siteConfig.phone}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${siteConfig.email}`} className='underline underline-offset-4'>
+                {siteConfig.email}
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

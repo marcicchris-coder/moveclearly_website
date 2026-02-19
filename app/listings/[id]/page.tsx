@@ -1,16 +1,14 @@
 import { notFound } from 'next/navigation';
-import { getListingById, getIdxProviderMode, isUsingMockIdxData } from '@/lib/idx';
+import { getListingById } from '@/lib/idx';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { formatCurrency, formatNumber } from '@/lib/utils';
 import { ListingGallery } from '@/components/sections/listing-gallery';
-import { LeadForm } from '@/components/forms/lead-form';
-import { Button } from '@/components/ui/button';
 import { JsonLdScript } from '@/components/sections/json-ld-script';
 import { listingJsonLd } from '@/lib/seo/json-ld';
+import { siteConfig } from '@/lib/constants';
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const listing = await getListingById(params.id);
-  const usingMockData = isUsingMockIdxData();
 
   if (!listing) {
     return buildMetadata({
@@ -25,14 +23,12 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
     title: `${listing.address} | Move Clearly`,
     description: `${listing.beds} bed, ${listing.baths} bath home in ${listing.city} listed at ${formatCurrency(listing.price)}.`,
     canonicalPath: `/listings/${listing.id}`,
-    image: listing.images[0],
-    noIndex: usingMockData
+    image: listing.images[0]
   });
 }
 
 export default async function ListingDetailPage({ params }: { params: { id: string } }) {
   const listing = await getListingById(params.id);
-  const usingIdxBroker = getIdxProviderMode() === 'idxbroker';
 
   if (!listing) notFound();
 
@@ -64,25 +60,27 @@ export default async function ListingDetailPage({ params }: { params: { id: stri
             </div>
 
             <div className='rounded-xl border border-dashed p-6'>
-              <h3 className='font-semibold'>Map Placeholder</h3>
+              <h3 className='font-semibold'>Location Highlights</h3>
               <p className='mt-2 text-sm text-muted-foreground'>
-                Integrate provider map widget here during live IDX implementation.
+                Review neighborhood access, nearby shopping, schools, parks, and commute routes to evaluate overall
+                location fit.
               </p>
             </div>
           </div>
 
-          <div>
-            {usingIdxBroker && listing.externalUrl ? (
-              <div className='mb-4 rounded-xl border p-4'>
-                <p className='text-sm text-muted-foreground'>Need complete listing history and IDX details?</p>
-                <Button asChild className='mt-3 w-full'>
-                  <a href={listing.externalUrl} target='_blank' rel='noopener noreferrer'>
-                    View Full IDX Listing
-                  </a>
-                </Button>
-              </div>
-            ) : null}
-            <LeadForm type='request-showing' source={`/listings/${listing.id}`} title='Request a Showing' submitLabel='Request Showing' />
+          <div className='rounded-xl border p-6'>
+            <h3 className='text-lg font-semibold'>Direct Contact</h3>
+            <p className='mt-2 text-sm text-muted-foreground'>
+              For private tour details and availability updates, contact our team directly.
+            </p>
+            <ul className='mt-4 space-y-2 text-sm text-muted-foreground'>
+              <li>
+                Call: <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} className='underline underline-offset-4'>{siteConfig.phone}</a>
+              </li>
+              <li>
+                Email: <a href={`mailto:${siteConfig.email}`} className='underline underline-offset-4'>{siteConfig.email}</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

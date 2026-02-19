@@ -7,9 +7,12 @@ import { Badge } from '@/components/ui/badge';
 import { TopAreas } from '@/components/sections/top-areas';
 import { TestimonialCarousel } from '@/components/sections/testimonial-carousel';
 import { CrystalRiverGallery } from '@/components/sections/crystal-river-gallery';
-import { IdxFeaturedWidget } from '@/components/sections/idx-featured-widget';
+import { getFeaturedListings } from '@/lib/idx';
+import { ListingCard } from '@/components/sections/listing-card';
 
 export default async function HomePage() {
+  const featuredListings = await getFeaturedListings();
+
   return (
     <>
       <JsonLdScript data={[organizationJsonLd(), localBusinessJsonLd()]} />
@@ -29,12 +32,21 @@ export default async function HomePage() {
               <Badge>Featured Listings</Badge>
               <h2 className='mt-3 text-3xl font-semibold'>Highlighted homes</h2>
               <p className='mt-2 text-muted-foreground'>
-                Explore featured homes for sale in Crystal River, Dunnellon, Inverness, and nearby Citrus County and Ocala
-                communities. This live MLS feed updates through IDX Broker so buyers can view current pricing, photos, and
-                property details in one place.
+                Explore highlighted homes for sale in Crystal River, Dunnellon, Inverness, and nearby Citrus County and Ocala
+                communities.
               </p>
             </div>
-            <IdxFeaturedWidget />
+            {featuredListings.length > 0 ? (
+              <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
+                {featuredListings.map((listing) => (
+                  <ListingCard key={listing.id} listing={listing} />
+                ))}
+              </div>
+            ) : (
+              <div className='rounded-xl border bg-white p-4 text-sm text-muted-foreground'>
+                Featured listings are refreshed regularly. Check back for newly available homes in your target areas.
+              </div>
+            )}
           </section>
         </SectionReveal>
 
@@ -56,7 +68,7 @@ export default async function HomePage() {
               <h3 className='text-xl font-semibold'>FAQ</h3>
               <div className='mt-4 space-y-3 text-sm'>
                 <p><strong>Do you help with both buying and selling?</strong><br />Yes, including coordinated move-up plans.</p>
-                <p><strong>Can I start with a quick strategy call?</strong><br />Yes, use the schedule page to pick a time.</p>
+                <p><strong>How can I get updates?</strong><br />Check our listings, communities, and blog for current information.</p>
                 <p><strong>Do you cover multiple communities?</strong><br />Yes, including Dunnellon, Ocala, Inverness, and nearby areas.</p>
               </div>
             </div>
