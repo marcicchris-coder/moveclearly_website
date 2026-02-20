@@ -6,7 +6,7 @@ const areas = [
   {
     name: 'Crystal River',
     desc: 'Coastal lifestyle, waterfront options, and local character.',
-    image: '/images/crystal-river-water-tower.jpg'
+    image: '/images/crystal-river-water-tower.webp'
   },
   {
     name: 'Lecanto',
@@ -21,7 +21,7 @@ const areas = [
   {
     name: 'Homosassa',
     desc: 'Nature-focused living with relaxed Florida pace.',
-    image: '/images/crystal-manatees-2.jpg'
+    image: '/images/crystal-manatees-2.webp'
   },
   {
     name: 'Inverness',
@@ -55,16 +55,17 @@ export function TopAreas() {
         </div>
       </div>
 
-      <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
+      <div className='depth-stage grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
         {areas.map((area) => (
-          <Card key={area.name} className='h-full overflow-hidden border-slate-200 bg-white/95 transition-all hover:-translate-y-1 hover:shadow-md'>
+          <Card key={area.name} className='depth-card h-full overflow-hidden rounded-2xl'>
             <div className='relative h-32'>
               <Image
                 src={area.image}
                 alt={`${area.name} area preview`}
                 fill
                 sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw'
-                className='object-cover'
+                quality={60}
+                className='depth-image object-cover'
               />
               <div className='absolute inset-0 bg-gradient-to-t from-slate-900/25 to-transparent' />
             </div>

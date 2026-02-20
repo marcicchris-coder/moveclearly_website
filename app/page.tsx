@@ -103,7 +103,7 @@ export default async function HomePage() {
                 Buying or selling a home doesn’t need to feel overwhelming. We focus on clear communication, realistic expectations, and smart strategy so you can make confident decisions at every step.
               </p>
               <p>
-                As a husband-and-wife team with deep local knowledge of Citrus County and surrounding areas, we combine hands-on service with modern tools to help you move efficiently and with less stress.
+                With deep local knowledge of Citrus County and surrounding areas, we combine hands-on service with modern tools to help you move efficiently and with less stress.
               </p>
               <p>
                 Whether you’re searching for your next home, selling a property, or just need honest guidance, our goal is simple: make the process clear and keep your best interests front and center.

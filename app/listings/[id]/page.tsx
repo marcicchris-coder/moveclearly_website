@@ -5,7 +5,6 @@ import { formatCurrency, formatNumber } from '@/lib/utils';
 import { ListingGallery } from '@/components/sections/listing-gallery';
 import { JsonLdScript } from '@/components/sections/json-ld-script';
 import { listingJsonLd } from '@/lib/seo/json-ld';
-import { siteConfig } from '@/lib/constants';
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const listing = await getListingById(params.id);
@@ -71,16 +70,8 @@ export default async function ListingDetailPage({ params }: { params: { id: stri
           <div className='rounded-xl border p-6'>
             <h3 className='text-lg font-semibold'>Direct Contact</h3>
             <p className='mt-2 text-sm text-muted-foreground'>
-              For private tour details and availability updates, contact our team directly.
+              Public contact details are hidden during pre-launch. Full agent information will be available at launch.
             </p>
-            <ul className='mt-4 space-y-2 text-sm text-muted-foreground'>
-              <li>
-                Call: <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} className='underline underline-offset-4'>{siteConfig.phone}</a>
-              </li>
-              <li>
-                Email: <a href={`mailto:${siteConfig.email}`} className='underline underline-offset-4'>{siteConfig.email}</a>
-              </li>
-            </ul>
           </div>
         </div>
       </div>

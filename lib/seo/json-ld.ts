@@ -4,26 +4,26 @@ import { Listing } from '@/lib/idx/types';
 export type JsonLd = Record<string, unknown>;
 
 export function organizationJsonLd(): JsonLd {
-  return {
+  const base = {
     '@context': 'https://schema.org',
     '@type': 'RealEstateAgent',
     name: siteConfig.name,
     url: siteConfig.url,
-    telephone: siteConfig.phone,
-    email: siteConfig.email,
     areaServed: ['Dunnellon', 'Citrus Springs', 'Crystal River', 'Lecanto', 'Beverly Hills', 'Hernando', 'Inverness', 'Ocala'],
     sameAs: []
   };
+
+  return siteConfig.publicProfileReady
+    ? { ...base, telephone: siteConfig.phone, email: siteConfig.email }
+    : base;
 }
 
 export function localBusinessJsonLd(): JsonLd {
-  return {
+  const base = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: siteConfig.name,
     url: siteConfig.url,
-    telephone: siteConfig.phone,
-    email: siteConfig.email,
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Ocala',
@@ -31,6 +31,10 @@ export function localBusinessJsonLd(): JsonLd {
       addressCountry: 'US'
     }
   };
+
+  return siteConfig.publicProfileReady
+    ? { ...base, telephone: siteConfig.phone, email: siteConfig.email }
+    : base;
 }
 
 export function breadcrumbJsonLd(items: Array<{ name: string; item: string }>): JsonLd {

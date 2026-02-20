@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { siteConfig } from '@/lib/constants';
-import { TrackedAnchor } from '@/components/analytics/tracked-anchor';
 import { TrackedLink } from '@/components/analytics/tracked-link';
 import { BrandLogo } from '@/components/layout/brand-logo';
 
@@ -15,7 +14,7 @@ export function SiteFooter() {
           <p className='mt-2 max-w-xl text-sm text-muted-foreground'>
             Clear strategy, fast communication, and modern guidance for buying and selling across key Florida communities.
           </p>
-          <p className='mt-4 text-sm text-muted-foreground'>Brokerage: {siteConfig.brokerage}</p>
+          <p className='mt-4 text-sm text-muted-foreground'>{siteConfig.brokerage}</p>
         </div>
 
         <div>
@@ -31,61 +30,9 @@ export function SiteFooter() {
         <div>
           <h3 className='text-sm font-semibold uppercase tracking-wide'>Reach Out</h3>
           <ul className='mt-3 space-y-2 text-sm text-muted-foreground'>
-            <li>
-              Chris Marcic:{' '}
-              <TrackedAnchor
-                href={`tel:${siteConfig.phone.replace(/\D/g, '')}`}
-                className='underline underline-offset-4'
-                eventName='contact_click'
-                eventParams={{ location: 'footer', method: 'phone', contact: 'chris' }}
-              >
-                {siteConfig.phone}
-              </TrackedAnchor>
-            </li>
-            <li>
-              <TrackedAnchor
-                href={`mailto:${siteConfig.email}`}
-                className='underline underline-offset-4'
-                eventName='contact_click'
-                eventParams={{ location: 'footer', method: 'email', contact: 'chris' }}
-              >
-                {siteConfig.email}
-              </TrackedAnchor>
-            </li>
-            <li className='pt-1'>
-              Michelle Marcic:{' '}
-              <TrackedAnchor
-                href={`tel:${siteConfig.secondaryPhone.replace(/\D/g, '')}`}
-                className='underline underline-offset-4'
-                eventName='contact_click'
-                eventParams={{ location: 'footer', method: 'phone', contact: 'michelle' }}
-              >
-                {siteConfig.secondaryPhone}
-              </TrackedAnchor>
-            </li>
-            <li>
-              <TrackedAnchor
-                href={`mailto:${siteConfig.secondaryEmail}`}
-                className='underline underline-offset-4'
-                eventName='contact_click'
-                eventParams={{ location: 'footer', method: 'email', contact: 'michelle' }}
-              >
-                {siteConfig.secondaryEmail}
-              </TrackedAnchor>
-            </li>
-            <li className='pt-1'>
-              Website:{' '}
-              <TrackedAnchor
-                href={`https://${siteConfig.website}`}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='underline underline-offset-4'
-                eventName='outbound_click'
-                eventParams={{ location: 'footer', target: siteConfig.website }}
-              >
-                {siteConfig.website}
-              </TrackedAnchor>
-            </li>
+            <li>Public contact details are hidden during pre-launch.</li>
+            <li>Full contact information will be published at launch.</li>
+            <li>Website: {siteConfig.website}</li>
           </ul>
         </div>
       </div>
@@ -93,13 +40,6 @@ export function SiteFooter() {
       <div className='border-t bg-slate-50'>
         <div className='mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-4 py-6 md:flex-row md:items-center md:px-6'>
           <div className='flex items-center gap-5'>
-            <Image
-              src='/brand/meek-real-estate-logo.png'
-              alt='Meek Real Estate logo'
-              width={160}
-              height={62}
-              className='h-auto w-36'
-            />
             <Image
               src='/brand/equal-housing-realtor-gray50.png'
               alt='Equal Housing Opportunity and Realtor marks'

@@ -1,15 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Community } from '@/lib/content/communities';
 
 export function CommunityCard({ community }: { community: Community }) {
   return (
-    <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.2 }}>
-      <Card className='h-full'>
+    <div className='depth-stage'>
+      <Card className='depth-card h-full rounded-2xl'>
         <CardHeader>
           <CardTitle>{community.name}</CardTitle>
         </CardHeader>
@@ -20,6 +19,6 @@ export function CommunityCard({ community }: { community: Community }) {
           </Link>
         </CardContent>
       </Card>
-    </motion.div>
+    </div>
   );
 }

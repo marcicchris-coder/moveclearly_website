@@ -19,15 +19,14 @@ Production-grade Next.js 14 real estate site for **Move Clearly** focused on tec
   - Canonical/host redirect middleware for `moveclearlyfl.com -> moveclearly.com`
 - Site structure
   - Informational pages and listing browsing
-  - Direct phone/email contact details with no lead-capture forms
+  - Public-safe pre-launch mode with anonymized profile/contact details
 - IDX-ready architecture
   - `lib/idx` interface-first provider layer
   - Mock provider with realistic listing records
-  - Search/listing pages designed for future StellarMLS integration
+  - Listing pages designed for future StellarMLS integration
 ## Pages
 
 - `/` Home
-- `/search`
 - `/listings`
 - `/listings/[id]`
 - `/communities`
@@ -55,7 +54,6 @@ Copy `.env.example` to `.env.local` and set values:
 ```bash
 NEXT_PUBLIC_SITE_URL=https://moveclearly.com
 IDX_PROVIDER=idxbroker
-IDX_SEARCH_MODE=api
 IDXBROKER_API_KEY=
 IDXBROKER_API_BASE_URL=https://api.idxbroker.com
 IDXBROKER_OUTPUT_TYPE=json
@@ -65,7 +63,6 @@ IDXBROKER_API_SEARCH_PATH=/clients/search
 IDXBROKER_API_FEATURED_PATH=/clients/featured
 IDXBROKER_API_LISTING_PATH_TEMPLATE=/clients/listing/{id}
 NEXT_PUBLIC_IDXBROKER_LISTING_URL_TEMPLATE=
-NEXT_PUBLIC_IDXBROKER_SEARCH_URL=
 NEXT_PUBLIC_GA4_ID=
 NEXT_PUBLIC_GTM_ID=
 ```
@@ -104,26 +101,18 @@ Current IDX abstraction lives in:
 
 Current support:
 
-1. `/search`, `/listings`, and `/listings/[id]` render server-side from IDX Broker API data.
+1. `/listings` and `/listings/[id]` render server-side from IDX Broker API data.
 2. `IDX_PROVIDER=idxbroker` + `IDXBROKER_API_KEY` enables live inventory data.
 3. `NEXT_PUBLIC_IDXBROKER_LISTING_URL_TEMPLATE` optionally adds outbound links to the vendor-hosted listing detail page (format: `https://yourdomain.com/idx/details/listing/XXX/{id}`).
-4. Filtered `/search` result URLs are `noindex` to reduce duplicate-index pages and preserve crawl budget.
-5. Listing pages are automatically `noindex` when API data is unavailable and the site falls back to mock data.
+4. Listing pages are automatically `noindex` when API data is unavailable and the site falls back to mock data.
 
 ### Recommended Production Pattern (Engage)
 
 For most Engage setups, a hybrid integration is the safest and most effective:
 
-1. Use IDX-hosted search pages (saved links / widgets) for full MLS search UX + compliance.
+1. Use IDX-hosted pages when needed for full MLS search UX + compliance.
 2. Keep API usage for curated sections (featured inventory, custom cards, selective landing pages).
 3. Keep your site branding and SEO pages native in Next.js.
-
-This project now supports that model:
-
-1. Set `IDX_SEARCH_MODE=hosted`.
-2. Set `NEXT_PUBLIC_IDXBROKER_SEARCH_URL` to your IDX-hosted search URL.
-3. `/search` will server-redirect to the hosted IDX search page.
-4. Set `IDX_SEARCH_MODE=api` to keep native API-driven `/search`.
 
 Recommended setup checklist:
 

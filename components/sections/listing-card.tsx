@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { BedDouble, Bath, Ruler } from 'lucide-react';
 import { Listing } from '@/lib/idx/types';
 import { Card, CardContent } from '@/components/ui/card';
@@ -18,8 +17,8 @@ export function ListingCard({ listing, href, highlighted = false }: ListingCardP
   const destination = href || `/listings/${listing.id}`;
 
   return (
-    <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
-      <Card className={cn('overflow-hidden transition-shadow', highlighted && 'ring-2 ring-primary/60 shadow-lg')}>
+    <div className='depth-stage'>
+      <Card className={cn('depth-card overflow-hidden rounded-2xl', highlighted && 'ring-2 ring-primary/60')}>
         <Link href={destination}>
           <div className='relative h-56 overflow-hidden'>
             <Image
@@ -27,7 +26,8 @@ export function ListingCard({ listing, href, highlighted = false }: ListingCardP
               alt={`${listing.address} in ${listing.city}`}
               fill
               sizes='(max-width: 768px) 100vw, 33vw'
-              className='object-cover transition-transform duration-300 hover:scale-105'
+              quality={65}
+              className='depth-image object-cover'
               priority={false}
             />
           </div>
@@ -53,6 +53,6 @@ export function ListingCard({ listing, href, highlighted = false }: ListingCardP
           </div>
         </CardContent>
       </Card>
-    </motion.div>
+    </div>
   );
 }

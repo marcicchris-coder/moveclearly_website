@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Home, Menu } from 'lucide-react';
 import { useState } from 'react';
 import { navLinks } from '@/lib/constants';
@@ -11,17 +12,11 @@ import { BrandLogo } from '@/components/layout/brand-logo';
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className='sticky top-0 z-50 border-b bg-background/95 backdrop-blur'>
-      <div
-        className='relative h-9 overflow-hidden border-b border-black/30'
-        style={{
-          backgroundImage:
-            'repeating-linear-gradient(-45deg,#facc15 0 18px,#111827 18px 30px)'
-        }}
-        aria-label='Website under construction notice'
-      >
+      <div className='construction-tape relative h-9 overflow-hidden border-b border-black/30' aria-label='Website under construction notice'>
         <div className='absolute inset-0 flex items-center justify-center px-4'>
           <p className='rounded-sm bg-amber-200/95 px-3 py-1 text-center text-[10px] font-extrabold uppercase tracking-[0.2em] text-neutral-900 ring-1 ring-black/30 sm:text-xs'>
             Website Under Construction
@@ -38,6 +33,7 @@ export function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
+              aria-current={pathname === link.href ? 'page' : undefined}
               onClick={() => trackEvent('nav_link_click', { location: 'header', label: link.label, href: link.href })}
               className='text-xs font-semibold uppercase tracking-[0.12em] text-foreground/80 transition-colors hover:text-foreground'
             >
@@ -80,6 +76,7 @@ export function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
+              aria-current={pathname === link.href ? 'page' : undefined}
               className='text-sm font-medium'
               onClick={() => {
                 trackEvent('nav_link_click', { location: 'mobile_menu', label: link.label, href: link.href });

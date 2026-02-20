@@ -1,10 +1,8 @@
 import { buildMetadata } from '@/lib/seo/metadata';
-import { siteConfig } from '@/lib/constants';
-import { TrackedAnchor } from '@/components/analytics/tracked-anchor';
 
 export const metadata = buildMetadata({
   title: 'How We Work | Move Clearly',
-  description: 'Overview of process and direct contact details.',
+  description: 'Overview of process and planning flow for Move Clearly.',
   canonicalPath: '/schedule'
 });
 
@@ -27,30 +25,10 @@ export default function SchedulePage() {
           </ol>
         </div>
         <div className='rounded-xl border p-6'>
-          <h2 className='text-xl font-semibold'>Direct Contact</h2>
-          <ul className='mt-4 space-y-2 text-sm text-muted-foreground'>
-            <li>
-              Chris Marcic:{' '}
-              <TrackedAnchor
-                href={`tel:${siteConfig.phone.replace(/\D/g, '')}`}
-                className='underline underline-offset-4'
-                eventName='contact_click'
-                eventParams={{ location: 'schedule_page', method: 'phone', contact: 'chris' }}
-              >
-                {siteConfig.phone}
-              </TrackedAnchor>
-            </li>
-            <li>
-              <TrackedAnchor
-                href={`mailto:${siteConfig.email}`}
-                className='underline underline-offset-4'
-                eventName='contact_click'
-                eventParams={{ location: 'schedule_page', method: 'email', contact: 'chris' }}
-              >
-                {siteConfig.email}
-              </TrackedAnchor>
-            </li>
-          </ul>
+          <h2 className='text-xl font-semibold'>Contact Details</h2>
+          <p className='mt-3 text-sm text-muted-foreground'>
+            Public contact information is intentionally hidden during construction. Full details will be published at launch.
+          </p>
         </div>
       </div>
     </div>

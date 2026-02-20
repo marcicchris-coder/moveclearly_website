@@ -14,9 +14,11 @@ export function buildMetadata({ title, description, canonicalPath = '/', image, 
   const ogImage = image || siteConfig.ogImage;
 
   return {
+    applicationName: siteConfig.name,
     title,
     description,
     metadataBase: new URL(siteConfig.url),
+    manifest: '/manifest.webmanifest',
     alternates: {
       canonical: url
     },
@@ -26,6 +28,7 @@ export function buildMetadata({ title, description, canonicalPath = '/', image, 
       type: 'website',
       url,
       siteName: siteConfig.name,
+      locale: 'en_US',
       images: [{ url: ogImage }]
     },
     twitter: {

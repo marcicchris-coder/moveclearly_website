@@ -24,8 +24,9 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <AnalyticsPlaceholders />
       </head>
       <body className='font-sans'>
+        <a href='#main-content' className='skip-link'>Skip to content</a>
         <SiteHeader />
-        <main>{children}</main>
+        <main id='main-content'>{children}</main>
         <SiteFooter />
       </body>
     </html>

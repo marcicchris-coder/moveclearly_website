@@ -65,3 +65,83 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.construction-tape {
+  background-image: repeating-linear-gradient(-45deg, #facc15 0 18px, #111827 18px 30px);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -5rem;
+  z-index: 100;
+  border-radius: 0.5rem;
+  background: #111827;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.depth-stage {
+  perspective: 1200px;
+}
+
+.depth-card {
+  position: relative;
+  transform-style: preserve-3d;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(244, 250, 255, 0.96));
+  box-shadow:
+    0 1px 1px rgba(15, 23, 42, 0.04),
+    0 10px 24px rgba(15, 23, 42, 0.08),
+    0 24px 44px rgba(14, 165, 233, 0.1);
+  transition:
+    transform 240ms ease,
+    box-shadow 240ms ease,
+    border-color 240ms ease;
+}
+
+.depth-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.42), transparent 45%);
+  opacity: 0.8;
+}
+
+.depth-card:hover {
+  transform: translate3d(0, -8px, 0) rotateX(1deg) rotateY(-1deg);
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow:
+    0 2px 2px rgba(15, 23, 42, 0.05),
+    0 16px 36px rgba(15, 23, 42, 0.12),
+    0 30px 56px rgba(14, 165, 233, 0.16);
+}
+
+.depth-image {
+  transition: transform 320ms ease;
+  transform-origin: center;
+}
+
+.depth-card:hover .depth-image {
+  transform: scale(1.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .depth-card,
+  .depth-image {
+    transition: none;
+  }
+
+  .depth-card:hover {
+    transform: none;
+  }
+}
