@@ -7,15 +7,30 @@ import { navLinks } from '@/lib/constants';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { trackEvent } from '@/lib/analytics/track';
+import { BrandLogo } from '@/components/layout/brand-logo';
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
     <header className='sticky top-0 z-50 border-b bg-background/95 backdrop-blur'>
+      <div
+        className='relative h-9 overflow-hidden border-b border-black/30'
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(-45deg,#facc15 0 18px,#111827 18px 30px)'
+        }}
+        aria-label='Website under construction notice'
+      >
+        <div className='absolute inset-0 flex items-center justify-center px-4'>
+          <p className='rounded-sm bg-amber-200/95 px-3 py-1 text-center text-[10px] font-extrabold uppercase tracking-[0.2em] text-neutral-900 ring-1 ring-black/30 sm:text-xs'>
+            Website Under Construction
+          </p>
+        </div>
+      </div>
       <div className='mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6'>
-        <Link href='/' className='text-xl font-bold tracking-tight' onClick={() => trackEvent('nav_logo_click', { location: 'header' })}>
-          Move Clearly
+        <Link href='/' className='inline-flex items-center' onClick={() => trackEvent('nav_logo_click', { location: 'header' })}>
+          <BrandLogo priority />
         </Link>
 
         <nav className='hidden items-center gap-7 md:flex' aria-label='Main navigation'>

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { siteConfig } from '@/lib/constants';
 import { TrackedAnchor } from '@/components/analytics/tracked-anchor';
 import { TrackedLink } from '@/components/analytics/tracked-link';
+import { BrandLogo } from '@/components/layout/brand-logo';
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -10,7 +11,7 @@ export function SiteFooter() {
     <footer className='mt-20 border-t bg-white'>
       <div className='mx-auto grid max-w-7xl gap-10 px-4 py-12 md:grid-cols-[1.2fr_1fr_1fr] md:px-6'>
         <div>
-          <h2 className='text-lg font-semibold'>Move Clearly</h2>
+          <BrandLogo />
           <p className='mt-2 max-w-xl text-sm text-muted-foreground'>
             Clear strategy, fast communication, and modern guidance for buying and selling across key Florida communities.
           </p>

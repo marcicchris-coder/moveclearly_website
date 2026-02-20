@@ -13,6 +13,7 @@ declare global {
 
 export function trackEvent(eventName: string, params: AnalyticsParams = {}) {
   if (typeof window === 'undefined') return;
+  if (process.env.NODE_ENV !== 'production') return;
 
   if (typeof window.gtag === 'function') {
     window.gtag('event', eventName, params);

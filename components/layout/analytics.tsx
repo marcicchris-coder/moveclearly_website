@@ -1,6 +1,10 @@
 import Script from 'next/script';
 
 export function AnalyticsPlaceholders() {
+  if (process.env.NODE_ENV !== 'production') {
+    return null;
+  }
+
   const gaId = process.env.NEXT_PUBLIC_GA4_ID;
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
 

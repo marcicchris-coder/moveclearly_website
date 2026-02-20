@@ -1,0 +1,18 @@
+<svg width="360" height="96" viewBox="0 0 360 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">Move Clearly Logo</title>
+  <desc id="logoDesc">A geometric house mark with Move Clearly wordmark.</desc>
+  <defs>
+    <linearGradient id="markBg" x1="12" y1="12" x2="84" y2="84" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#0F766E"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="80" height="80" rx="20" fill="url(#markBg)"/>
+  <path d="M24 49L48 29L72 49" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M32 49V67H64V49" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M38 58L45 65L58 52" stroke="#FACC15" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#0F172A">
+    <text x="108" y="46" font-family="Manrope, Arial, sans-serif" font-size="29" font-weight="800" letter-spacing="1.5">MOVE</text>
+    <text x="108" y="72" font-family="Manrope, Arial, sans-serif" font-size="29" font-weight="800" letter-spacing="1.5">CLEARLY</text>
+  </g>
+</svg>
