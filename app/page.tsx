@@ -55,7 +55,7 @@ export default async function HomePage() {
         </SectionReveal>
 
         <SectionReveal>
-          <section className='grid gap-8 rounded-2xl border bg-grid p-8 lg:grid-cols-2'>
+          <section className='neo-panel bg-grid grid gap-8 rounded-2xl border p-8 lg:grid-cols-2'>
             <div>
               <h2 className='text-3xl font-semibold'>Trust signals</h2>
               <ul className='mt-4 space-y-2 text-sm text-muted-foreground'>
@@ -76,16 +76,16 @@ export default async function HomePage() {
         </SectionReveal>
 
         <SectionReveal>
-          <section className='rounded-2xl border bg-white p-8'>
+          <section className='neo-panel rounded-2xl border p-8'>
             <h2 className='text-3xl font-semibold'>How We Help Buyers and Sellers</h2>
             <div className='mt-6 grid gap-6 md:grid-cols-2'>
-              <div className='rounded-xl border bg-slate-50/70 p-6'>
+              <div className='rounded-xl border border-cyan-200/60 bg-white/75 p-6 shadow-sm'>
                 <h3 className='text-xl font-semibold'>For Buyers</h3>
                 <p className='mt-3 text-sm leading-relaxed text-muted-foreground md:text-base'>
                   We help buyers narrow their search, avoid wasted time, and focus on homes that actually fit their goals — whether that’s single-family residences, manufactured homes, or specific lifestyle needs. Our search tools and guidance are designed to simplify decisions, not overwhelm you.
                 </p>
               </div>
-              <div className='rounded-xl border bg-slate-50/70 p-6'>
+              <div className='rounded-xl border border-cyan-200/60 bg-white/75 p-6 shadow-sm'>
                 <h3 className='text-xl font-semibold'>For Sellers</h3>
                 <p className='mt-3 text-sm leading-relaxed text-muted-foreground md:text-base'>
                   Sellers benefit from clear pricing strategy, honest feedback, and modern marketing that attracts serious buyers. We focus on positioning your home correctly from day one to reduce time on market and maximize value.
@@ -96,7 +96,7 @@ export default async function HomePage() {
         </SectionReveal>
 
         <SectionReveal>
-          <section className='rounded-2xl border bg-white p-8'>
+          <section className='neo-panel rounded-2xl border p-8'>
             <h2 className='text-3xl font-semibold'>Why Work With Move Clearly?</h2>
             <div className='mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base'>
               <p>

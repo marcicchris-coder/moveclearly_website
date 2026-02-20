@@ -160,15 +160,114 @@ export const communities: Community[] = [
   {
     slug: 'crystal-river',
     name: 'Crystal River',
-    hero: 'Crystal River blends coastal charm and outdoor lifestyle, with properties that support both full-time living and second-home goals.',
-    summary: 'Waterfront access, local dining, and a relaxed but active market.',
-    lifestyle: ['Boating and waterfront recreation', 'Distinctive neighborhood feel', 'Strong appeal for lifestyle buyers'],
-    bestFor: ['Buyers wanting coastal access', 'Lifestyle-driven relocations'],
-    faq: [
-      { question: 'Are waterfront homes available?', answer: 'Yes, though inventory and pricing vary significantly depending on canal, river, or open-water access.' },
-      { question: 'Is Crystal River seasonal?', answer: 'The area has seasonal activity, but many communities support stable year-round living.' }
+    hero: 'Crystal River combines spring-fed water access, boating culture, and walkable pockets near Kings Bay, making it one of the most lifestyle-driven markets in Citrus County.',
+    summary: 'A waterfront-focused market where nature access and everyday convenience overlap.',
+    lifestyle: [
+      'Direct access to Kings Bay, spring runs, and Gulf routes for boating, paddling, and fishing',
+      'Mix of canal-front homes, established inland neighborhoods, and newer residential pockets',
+      'Year-round local activity with strong winter-season visitor demand around eco-tourism'
     ],
-    related: ['hernando', 'lecanto']
+    bestFor: [
+      'Buyers prioritizing waterfront or near-water lifestyle access',
+      'Households balancing full-time living with recreation-focused neighborhood goals'
+    ],
+    faq: [
+      {
+        question: 'Are waterfront homes available in Crystal River?',
+        answer: 'Yes. Inventory includes canal-front, bay-access, and inland options, with pricing shifting based on water depth, bridge clearance, and proximity to open Gulf routes.'
+      },
+      {
+        question: 'What is the current market direction in Crystal River?',
+        answer: 'Recent monthly housing snapshots indicate a buyer-favoring environment, with inventory depth giving buyers more room to compare options and negotiate terms.'
+      },
+      {
+        question: 'Is Crystal River practical for full-time residents?',
+        answer: 'Yes. While tourism activity peaks seasonally, the area supports year-round living with shopping, dining, medical access, and established residential neighborhoods.'
+      }
+    ],
+    related: ['hernando', 'lecanto'],
+    marketReport: {
+      reportName: 'Realtor.com Housing Market Snapshot',
+      period: 'December 2025 (latest monthly market view)',
+      highlights: [
+        'Median listing home price reported at approximately $346.2K, with year-over-year softening that can create more negotiating room for buyers.',
+        'Median sold price published around $307.8K, reflecting the gap between asking and closed pricing in many segments.',
+        'The market profile is categorized as buyer-leaning, with enough active inventory for side-by-side neighborhood comparisons.'
+      ],
+      stats: [
+        { label: 'Median listing price', value: '$346.2K' },
+        { label: 'Median sold price', value: '$307.8K' },
+        { label: 'Market posture', value: "Buyer's market" },
+        { label: 'Typical value spread', value: 'List-to-sold gap remains visible', note: 'Useful for offer strategy and due-diligence planning.' }
+      ]
+    },
+    attractions: [
+      {
+        name: 'Three Sisters Springs (Crystal River National Wildlife Refuge)',
+        description: 'Iconic spring complex known for clear water and winter manatee viewing, with boardwalk and seasonal trolley/kayak access.',
+        link: 'https://www.fws.gov/refuge/crystal-river'
+      },
+      {
+        name: 'Crystal River Archaeological State Park',
+        description: 'National Historic Landmark featuring pre-Columbian mound complexes and one of Florida’s most important archaeological landscapes.',
+        link: 'https://www.floridastateparks.org/parks-and-trails/crystal-river-archaeological-state-park'
+      },
+      {
+        name: 'Hunter Springs Park',
+        description: 'Popular local launch and swimming area with direct spring-fed access and central location near downtown Crystal River.',
+        link: 'https://www.crystalriverfl.org/facility/facility.aspx?FacilityID=2'
+      }
+    ],
+    featuredDining: [
+      {
+        name: 'Seafood Seller & Café',
+        description: 'A local favorite for seafood-forward plates and casual atmosphere near the Crystal River core.',
+        link: 'https://www.tripadvisor.com/Restaurant_Review-g34162-d1746909-Reviews-Seafood_Seller_Cafe-Crystal_River_Florida.html'
+      },
+      {
+        name: "Kane's Cattle Co.",
+        description: 'Steakhouse-style option often chosen for celebratory dinners and larger group meals.',
+        link: 'https://www.tripadvisor.com/Restaurant_Review-g34162-d1176954-Reviews-Kane_s_Cattle_Co-Crystal_River_Florida.html'
+      },
+      {
+        name: "Cracker's Bar & Grill",
+        description: 'Waterfront-adjacent dining with broad menu options and strong local visibility.',
+        link: 'https://www.tripadvisor.com/Restaurant_Review-g34162-d502306-Reviews-Cracker_s_Bar_Grill-Crystal_River_Florida.html'
+      }
+    ],
+    gallery: [
+      {
+        title: 'Kings Bay aerial character',
+        image: '/images/crystal-river-aerial.webp',
+        credit: 'Photo: Move Clearly media library',
+        source: '/images/crystal-river-aerial.webp'
+      },
+      {
+        title: 'Spring-fed wildlife access',
+        image: '/images/crystal-river-manatees.webp',
+        credit: 'Photo: Move Clearly media library',
+        source: '/images/crystal-river-manatees.webp'
+      },
+      {
+        title: 'Local district art and streetscape',
+        image: '/images/crystal-river-mural.webp',
+        credit: 'Photo: Move Clearly media library',
+        source: '/images/crystal-river-mural.webp'
+      }
+    ],
+    history: {
+      title: 'Springs, archaeology, and working waterfront roots',
+      narrative: [
+        'Crystal River developed around the spring-fed Kings Bay system, where consistent freshwater flow shaped settlement patterns, boating routes, and today’s recreation economy.',
+        'The Crystal River Archaeological State Park preserves one of Florida’s most significant pre-Columbian ceremonial sites, with mound structures tied to long-running trade and ritual networks.',
+        'Modern Crystal River identity blends conservation and waterfront life: manatee habitat protection, eco-tourism, and residential growth continue to influence neighborhood demand and development choices.'
+      ],
+      sources: [
+        { label: 'Crystal River National Wildlife Refuge', link: 'https://www.fws.gov/refuge/crystal-river' },
+        { label: 'Crystal River Archaeological State Park', link: 'https://www.floridastateparks.org/parks-and-trails/crystal-river-archaeological-state-park' },
+        { label: 'City of Crystal River', link: 'https://www.crystalriverfl.org/' }
+      ]
+    }
   },
   {
     slug: 'lecanto',
@@ -212,15 +311,94 @@ export const communities: Community[] = [
   {
     slug: 'inverness',
     name: 'Inverness',
-    hero: 'Inverness combines historic character with practical neighborhoods and a strong sense of place for full-time residents.',
-    summary: 'A city-center feel with lakes, trails, and established housing stock.',
-    lifestyle: ['Downtown events and local dining', 'Lakes and trail connectivity', 'Mix of character homes and newer updates'],
-    bestFor: ['Buyers wanting neighborhood character', 'Residents who like local events and walkable pockets'],
-    faq: [
-      { question: 'Is Inverness walkable?', answer: 'Downtown areas are more walkable, while most residential neighborhoods remain car-oriented.' },
-      { question: 'How does pricing compare nearby?', answer: 'Pricing can be moderate, with variation by condition and proximity to the downtown core.' }
+    hero: 'Inverness offers a historic downtown core, lakeside setting, and trail-linked neighborhoods that attract buyers wanting both character and practical day-to-day convenience.',
+    summary: 'A city-center market with civic history, lake access, and strong full-time residential appeal.',
+    lifestyle: [
+      'Downtown events, courthouse-square character, and locally owned dining',
+      'Access to the Withlacoochee State Trail corridor and nearby lake recreation',
+      'Mix of established homes, updated properties, and value-focused neighborhoods around the city center'
     ],
-    related: ['beverly-hills', 'ocala']
+    bestFor: [
+      'Buyers who want community character plus routine convenience',
+      'Residents prioritizing trail access, downtown events, and year-round livability'
+    ],
+    faq: [
+      {
+        question: 'Is Inverness walkable?',
+        answer: 'Downtown Inverness is the most walkable pocket, while surrounding neighborhoods are generally car-oriented with selective bike/trail access.'
+      },
+      {
+        question: 'What does the current Inverness market look like?',
+        answer: 'Recent monthly snapshots show moderate pricing with buyer leverage in many segments, especially where homes need updates or have longer days on market.'
+      },
+      {
+        question: 'Is Inverness mainly a retirement market?',
+        answer: 'Inverness includes downsizers and retirees, but it also supports mixed-age owner-occupant households, relocations, and move-up buyers.'
+      }
+    ],
+    related: ['beverly-hills', 'ocala'],
+    marketReport: {
+      reportName: 'Realtor.com Housing Market Snapshot',
+      period: 'December 2025 (latest monthly market view)',
+      highlights: [
+        'Median listing home price reported at roughly $274.5K, indicating a comparatively attainable entry profile versus some nearby coastal pockets.',
+        'Median sold price published near $250.0K, reinforcing the need to evaluate condition and pricing strategy together.',
+        'Market classification remains buyer-leaning, with inventory levels that support more deliberate comparison shopping.'
+      ],
+      stats: [
+        { label: 'Median listing price', value: '$274.5K' },
+        { label: 'Median sold price', value: '$250.0K' },
+        { label: 'Market posture', value: "Buyer's market" },
+        { label: 'Pricing context', value: 'Generally moderate relative to nearby lifestyle markets' }
+      ]
+    },
+    attractions: [
+      {
+        name: 'Old Courthouse Heritage Museum',
+        description: 'Historic 1912 courthouse now serving as a local heritage museum and downtown landmark.',
+        link: 'https://www.oldcourthouse.org/'
+      },
+      {
+        name: 'Withlacoochee State Trail (Inverness segment)',
+        description: 'Regionally known paved trail corridor used for cycling, running, and long-range connectivity across Citrus County.',
+        link: 'https://www.floridastateparks.org/parks-and-trails/withlacoochee-state-trail'
+      },
+      {
+        name: 'Fort Cooper State Park',
+        description: 'Historic and natural area with trails, shoreline habitat, and interpretive value tied to Florida frontier history.',
+        link: 'https://www.floridastateparks.org/parks-and-trails/fort-cooper-state-park'
+      }
+    ],
+    featuredDining: [
+      {
+        name: 'Stumpknockers on the Square',
+        description: 'Popular downtown-adjacent option for casual seafood and Southern-style staples.',
+        link: 'https://www.tripadvisor.com/Restaurant_Review-g34325-d2257830-Reviews-Stumpknockers_on_the_Square-Inverness_Florida.html'
+      },
+      {
+        name: 'The Cove Pub and Grub',
+        description: 'Local hangout-style restaurant frequently chosen for relaxed meals and live-event nights.',
+        link: 'https://www.tripadvisor.com/Restaurant_Review-g34325-d3850728-Reviews-The_Cove_Pub_and_Grub-Inverness_Florida.html'
+      },
+      {
+        name: 'Cedar River Seafood',
+        description: 'A long-running seafood option serving classic Florida-style plates in the Inverness market area.',
+        link: 'https://www.tripadvisor.com/Restaurant_Review-g34325-d2429547-Reviews-Cedar_River_Seafood-Inverness_Florida.html'
+      }
+    ],
+    history: {
+      title: 'Rail-era growth and courthouse-square identity',
+      narrative: [
+        'Inverness expanded as transportation and regional commerce grew in Citrus County, with downtown blocks forming around civic and rail-linked activity in the late 19th and early 20th centuries.',
+        'The 1912 courthouse complex remains one of the city’s defining landmarks and anchors local identity through the Old Courthouse Heritage Museum.',
+        'Today, Inverness blends that historic core with trail connectivity, lake access, and practical residential neighborhoods, creating a market that appeals to both long-time locals and relocating buyers.'
+      ],
+      sources: [
+        { label: 'City of Inverness', link: 'https://www.inverness.gov/' },
+        { label: 'Old Courthouse Heritage Museum', link: 'https://www.oldcourthouse.org/' },
+        { label: 'Fort Cooper State Park', link: 'https://www.floridastateparks.org/parks-and-trails/fort-cooper-state-park' }
+      ]
+    }
   },
   {
     slug: 'ocala',

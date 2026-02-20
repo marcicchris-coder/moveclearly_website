@@ -1,5 +1,6 @@
 export const siteConfig = {
   name: 'Move Clearly',
+  version: 'v1.0.0',
   description:
     'A clear, confident real estate experience for buyers and sellers in Florida communities.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://moveclearly.com',
@@ -14,7 +15,7 @@ export const siteConfig = {
 };
 
 export const navLinks = [
-  { href: '/communities/dunnellon', label: 'Communities' },
+  { href: '/communities', label: 'Communities' },
   { href: '/listings', label: 'Listings' },
   { href: '/blog', label: 'Blog' },
   { href: '/about', label: 'About' },

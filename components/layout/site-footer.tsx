@@ -52,6 +52,7 @@ export function SiteFooter() {
           <div className='text-xs text-muted-foreground md:text-right'>
             <p>Each office is independently owned and operated.</p>
             <p className='mt-1'>© {year} Move Clearly. All rights reserved.</p>
+            <p className='mt-1'>Version {siteConfig.version}</p>
           </div>
         </div>
       </div>

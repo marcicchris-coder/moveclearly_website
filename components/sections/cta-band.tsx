@@ -3,11 +3,11 @@ import { Button } from '@/components/ui/button';
 
 export function CtaBand() {
   return (
-    <section className='mt-16 rounded-2xl border bg-gradient-to-r from-cyan-900 to-cyan-700 p-8 text-white'>
+    <section className='neo-panel mt-16 rounded-2xl border p-8 text-slate-900'>
       <div className='grid gap-6 md:grid-cols-[1fr_auto] md:items-center'>
         <div>
           <h2 className='text-2xl font-semibold'>Explore Florida Market Insights</h2>
-          <p className='mt-2 text-white/90'>
+          <p className='mt-2 text-slate-600'>
             Browse local community guides and market-focused articles to plan your next real estate decision.
           </p>
         </div>
@@ -15,7 +15,7 @@ export function CtaBand() {
           <Button asChild variant='secondary'>
             <Link href='/communities'>Browse Communities</Link>
           </Button>
-          <Button asChild variant='outline' className='border-white/40 text-white hover:bg-white/10'>
+          <Button asChild variant='outline' className='border-cyan-300/70 bg-white/60 text-slate-800 hover:bg-cyan-50'>
             <Link href='/blog'>Read Blog</Link>
           </Button>
         </div>

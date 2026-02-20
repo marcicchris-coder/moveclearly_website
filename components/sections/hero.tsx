@@ -16,7 +16,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section className='relative overflow-hidden border-b bg-gradient-to-b from-white to-background'>
+    <section className='aura-bg relative overflow-hidden border-b bg-gradient-to-b from-sky-50/70 via-white to-background'>
       <div
         className='pointer-events-none absolute inset-0 opacity-40'
         style={{
@@ -26,7 +26,7 @@ export function Hero() {
       />
       <div className='relative mx-auto grid max-w-7xl gap-10 px-4 py-20 md:px-6 md:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:items-center'>
         <div className='animate-fade-up'>
-          <p className='mb-3 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-primary'>
+          <p className='mb-3 inline-block rounded-full border border-cyan-200/70 bg-cyan-50/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-700'>
             Florida Real Estate, Made Clear
           </p>
           <h1 className='text-4xl font-bold leading-tight tracking-tight md:text-6xl'>

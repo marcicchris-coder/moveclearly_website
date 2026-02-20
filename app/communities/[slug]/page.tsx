@@ -26,7 +26,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const description =
     community.slug === 'dunnellon'
       ? 'Dunnellon FL real estate community guide with current market stats, Rainbow River and Withlacoochee attractions, neighborhood insights, and homes for sale.'
-      : `${community.hero} Learn if ${community.name} fits your lifestyle and browse homes with confidence.`;
+      : community.slug === 'crystal-river'
+        ? 'Crystal River FL real estate guide with current market snapshot, Kings Bay and springs attractions, neighborhood insights, and local lifestyle details.'
+        : community.slug === 'inverness'
+          ? 'Inverness FL real estate guide with current market snapshot, downtown history, trail and park highlights, and neighborhood planning insights.'
+          : `${community.hero} Learn if ${community.name} fits your lifestyle and browse homes with confidence.`;
 
   return buildMetadata({
     title: `${community.name}, FL Real Estate Guide | Move Clearly`,
@@ -80,7 +84,9 @@ export default function CommunityPage({ params }: { params: { slug: string } }) 
           <section className='space-y-4'>
             <div>
               <h2 className='text-2xl font-semibold'>Photo highlights</h2>
-              <p className='text-sm text-muted-foreground'>Natural springs, river crossings, and Dunnellon landmarks.</p>
+              <p className='text-sm text-muted-foreground'>
+                Local scenes that help you visualize daily life in {community.name}.
+              </p>
             </div>
             <div className='grid gap-4 md:grid-cols-3'>
               {community.gallery.map((item) => (
