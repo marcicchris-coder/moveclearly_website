@@ -1,118 +1,154 @@
-import { Hero } from '@/components/sections/hero';
-import { SectionReveal } from '@/components/layout/section-reveal';
-import { CtaBand } from '@/components/sections/cta-band';
+import Link from 'next/link';
+import { buildMetadata } from '@/lib/seo/metadata';
+import { communities } from '@/src/content/communities';
+import { siteCopy } from '@/src/content/siteCopy';
+import { HeroSection } from '@/components/portal/HeroSection';
+import { SectionHeader } from '@/components/portal/SectionHeader';
+import { CardGrid } from '@/components/portal/CardGrid';
+import { CommunityCard } from '@/components/portal/CommunityCard';
+import { CTASection } from '@/components/portal/CTASection';
 import { JsonLdScript } from '@/components/sections/json-ld-script';
-import { localBusinessJsonLd, organizationJsonLd } from '@/lib/seo/json-ld';
-import { Badge } from '@/components/ui/badge';
-import { TopAreas } from '@/components/sections/top-areas';
-import { TestimonialCarousel } from '@/components/sections/testimonial-carousel';
-import { CrystalRiverGallery } from '@/components/sections/crystal-river-gallery';
-import { getFeaturedListings } from '@/lib/idx';
-import { ListingCard } from '@/components/sections/listing-card';
+import { localBusinessJsonLd, organizationJsonLd, webPageJsonLd } from '@/lib/seo/json-ld';
 
-export default async function HomePage() {
-  const featuredListings = await getFeaturedListings();
+export const metadata = buildMetadata({
+  title: 'Move Clearly | Education-First Real Estate Portal in Citrus County, Florida',
+  description:
+    'Explore Citrus County communities, buyer and seller roadmaps, and practical local guidance for confident Florida real estate decisions.',
+  canonicalPath: '/'
+});
+
+export default function HomePage() {
+  const featuredCommunities = communities.slice(0, 6);
 
   return (
     <>
-      <JsonLdScript data={[organizationJsonLd(), localBusinessJsonLd()]} />
-      <Hero />
-      <div className='mx-auto max-w-7xl space-y-20 px-4 py-16 md:px-6'>
-        <SectionReveal>
-          <TopAreas />
-        </SectionReveal>
+      <JsonLdScript
+        data={[
+          organizationJsonLd(),
+          localBusinessJsonLd(),
+          webPageJsonLd({
+            name: 'Move Clearly Home',
+            url: 'https://moveclearly.com/',
+            description: 'Education-first real estate portal for Citrus County and nearby Florida communities.'
+          })
+        ]}
+      />
 
-        <SectionReveal>
-          <CrystalRiverGallery />
-        </SectionReveal>
+      <HeroSection
+        title={siteCopy.home.headline}
+        description={siteCopy.home.subheadline}
+        imageKey='homeHero'
+        primaryCta={{ label: 'Explore Communities', href: '/communities' }}
+        secondaryCta={{ label: 'Start the Buyer Roadmap', href: '/buy' }}
+      />
 
-        <SectionReveal>
-          <section>
-            <div className='mb-8'>
-              <Badge>Featured Listings</Badge>
-              <h2 className='mt-3 text-3xl font-semibold'>Highlighted homes</h2>
-              <p className='mt-2 text-muted-foreground'>
-                Explore highlighted homes for sale in Crystal River, Dunnellon, Inverness, and nearby Citrus County and Ocala
-                communities.
-              </p>
-            </div>
-            {featuredListings.length > 0 ? (
-              <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
-                {featuredListings.map((listing) => (
-                  <ListingCard key={listing.id} listing={listing} />
-                ))}
-              </div>
-            ) : (
-              <div className='rounded-xl border bg-white p-4 text-sm text-muted-foreground'>
-                Featured listings are refreshed regularly. Check back for newly available homes in your target areas.
-              </div>
-            )}
-          </section>
-        </SectionReveal>
+      <div className='mx-auto max-w-7xl space-y-16 px-4 py-14 md:px-6 md:py-16'>
+        <section>
+          <SectionHeader
+            eyebrow='What Move Clearly Does'
+            title='Guidance built for calm, informed decisions'
+            description='Every section is designed to help you make progress with less uncertainty and clearer expectations.'
+          />
+          <div className='mt-8'>
+            <CardGrid columns={4}>
+              {siteCopy.home.trustCards.map((card) => (
+                <article key={card.title} className='rounded-2xl border border-slate-200 bg-white p-6 shadow-sm'>
+                  <h3 className='text-xl font-semibold text-slate-900'>{card.title}</h3>
+                  <p className='mt-3 text-sm leading-6 text-slate-600'>{card.description}</p>
+                </article>
+              ))}
+            </CardGrid>
+          </div>
+        </section>
 
-        <SectionReveal>
-          <TestimonialCarousel />
-        </SectionReveal>
+        <section>
+          <SectionHeader
+            eyebrow='Choose Your Path'
+            title='Pick the roadmap that matches your next move'
+            description='Start with buying or selling, then follow a clear sequence of steps so you know what comes next.'
+          />
+          <div className='mt-8'>
+            <CardGrid columns={2}>
+              {siteCopy.home.pathTiles.map((tile) => (
+                <article key={tile.title} className='rounded-2xl border border-slate-200 bg-white p-6 shadow-sm'>
+                  <h3 className='text-2xl font-semibold text-slate-900'>{tile.title}</h3>
+                  <p className='mt-3 text-sm leading-6 text-slate-600'>{tile.description}</p>
+                  <Link href={tile.href} className='mt-5 inline-flex text-sm font-semibold text-cyan-700 hover:text-cyan-800'>
+                    {tile.cta}
+                  </Link>
+                </article>
+              ))}
+            </CardGrid>
+          </div>
+        </section>
 
-        <SectionReveal>
-          <section className='neo-panel bg-grid grid gap-8 rounded-2xl border p-8 lg:grid-cols-2'>
-            <div>
-              <h2 className='text-3xl font-semibold'>Trust signals</h2>
-              <ul className='mt-4 space-y-2 text-sm text-muted-foreground'>
-                <li>• Responsive communication and defined process milestones</li>
-                <li>• Market-informed pricing and offer strategy</li>
-                <li>• Local expertise across Citrus and Marion County communities</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className='text-xl font-semibold'>FAQ</h3>
-              <div className='mt-4 space-y-3 text-sm'>
-                <p><strong>Do you help with both buying and selling?</strong><br />Yes, including coordinated move-up plans.</p>
-                <p><strong>How can I get updates?</strong><br />Check our listings, communities, and blog for current information.</p>
-                <p><strong>Do you cover multiple communities?</strong><br />Yes, including Dunnellon, Ocala, Inverness, and nearby areas.</p>
-              </div>
-            </div>
-          </section>
-        </SectionReveal>
+        <section>
+          <SectionHeader
+            eyebrow='Featured Communities'
+            title='Start comparing places with confidence'
+            description='These guides come from the same community data source used across the portal and stay easy to update as content grows.'
+          />
+          <div className='mt-8'>
+            <CardGrid>
+              {featuredCommunities.map((community) => (
+                <CommunityCard key={community.slug} community={community} />
+              ))}
+            </CardGrid>
+          </div>
+        </section>
 
-        <SectionReveal>
-          <section className='neo-panel rounded-2xl border p-8'>
-            <h2 className='text-3xl font-semibold'>How We Help Buyers and Sellers</h2>
-            <div className='mt-6 grid gap-6 md:grid-cols-2'>
-              <div className='rounded-xl border border-cyan-200/60 bg-white/75 p-6 shadow-sm'>
-                <h3 className='text-xl font-semibold'>For Buyers</h3>
-                <p className='mt-3 text-sm leading-relaxed text-muted-foreground md:text-base'>
-                  We help buyers narrow their search, avoid wasted time, and focus on homes that actually fit their goals — whether that’s single-family residences, manufactured homes, or specific lifestyle needs. Our search tools and guidance are designed to simplify decisions, not overwhelm you.
-                </p>
-              </div>
-              <div className='rounded-xl border border-cyan-200/60 bg-white/75 p-6 shadow-sm'>
-                <h3 className='text-xl font-semibold'>For Sellers</h3>
-                <p className='mt-3 text-sm leading-relaxed text-muted-foreground md:text-base'>
-                  Sellers benefit from clear pricing strategy, honest feedback, and modern marketing that attracts serious buyers. We focus on positioning your home correctly from day one to reduce time on market and maximize value.
-                </p>
-              </div>
-            </div>
-          </section>
-        </SectionReveal>
+        <section className='grid gap-6 md:grid-cols-2'>
+          <article className='rounded-2xl border border-slate-200 bg-white p-6 shadow-sm'>
+            <h2 className='text-2xl font-semibold text-slate-900'>Buying process preview</h2>
+            <ol className='mt-4 space-y-2 text-sm text-slate-600'>
+              {siteCopy.home.buyPreview.map((item) => (
+                <li key={item}>- {item}</li>
+              ))}
+            </ol>
+            <Link href='/buy' className='mt-5 inline-flex text-sm font-semibold text-cyan-700 hover:text-cyan-800'>
+              Open full buyer roadmap
+            </Link>
+          </article>
 
-        <SectionReveal>
-          <section className='neo-panel rounded-2xl border p-8'>
-            <h2 className='text-3xl font-semibold'>Why Work With Move Clearly?</h2>
-            <div className='mt-5 space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base'>
-              <p>
-                Buying or selling a home doesn’t need to feel overwhelming. We focus on clear communication, realistic expectations, and smart strategy so you can make confident decisions at every step.
-              </p>
-              <p>
-                With deep local knowledge of Citrus County and surrounding areas, we combine hands-on service with modern tools to help you move efficiently and with less stress.
-              </p>
-              <p>
-                Whether you’re searching for your next home, selling a property, or just need honest guidance, our goal is simple: make the process clear and keep your best interests front and center.
-              </p>
-            </div>
-          </section>
-        </SectionReveal>
+          <article className='rounded-2xl border border-slate-200 bg-white p-6 shadow-sm'>
+            <h2 className='text-2xl font-semibold text-slate-900'>Selling process preview</h2>
+            <ol className='mt-4 space-y-2 text-sm text-slate-600'>
+              {siteCopy.home.sellPreview.map((item) => (
+                <li key={item}>- {item}</li>
+              ))}
+            </ol>
+            <Link href='/sell' className='mt-5 inline-flex text-sm font-semibold text-cyan-700 hover:text-cyan-800'>
+              Open full seller roadmap
+            </Link>
+          </article>
+        </section>
 
-        <CtaBand />
+        <section className='rounded-2xl border border-slate-200 bg-white p-8 shadow-sm'>
+          <SectionHeader
+            eyebrow='Local Perspective'
+            title='How to use this portal in Citrus County and nearby Florida communities'
+            description={
+              <span>
+                If you are deciding where to live or how to plan your next move, start with{' '}
+                <Link href='/communities' className='font-semibold text-cyan-700 hover:text-cyan-800'>Explore Communities</Link>, then continue with the{' '}
+                <Link href='/buy' className='font-semibold text-cyan-700 hover:text-cyan-800'>Buyer Roadmap</Link> or{' '}
+                <Link href='/sell' className='font-semibold text-cyan-700 hover:text-cyan-800'>Seller Roadmap</Link>.
+              </span>
+            }
+          />
+          <div className='mt-6 space-y-4 text-sm leading-7 text-slate-600 md:text-base'>
+            {siteCopy.home.seoBlock.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </section>
+
+        <CTASection
+          title='Need tailored help after reviewing the guides?'
+          description='Talk through your goals, timeline, and next best step with a local guide who can help you plan with clarity.'
+          primary={{ label: 'Talk to a local guide', href: '/contact' }}
+          secondary={{ label: 'Explore communities first', href: '/communities' }}
+        />
       </div>
     </>
   );

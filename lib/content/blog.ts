@@ -12,6 +12,8 @@ export interface BlogPostMeta {
   date: string;
   tags: string[];
   category: string;
+  heroImage?: string;
+  heroAlt?: string;
 }
 
 export interface BlogPost extends BlogPostMeta {
@@ -27,6 +29,7 @@ const loadAllPostsWithContent = cache(async (): Promise<BlogPost[]> => {
         const slug = file.replace('.mdx', '');
         const source = await fs.readFile(path.join(BLOG_DIR, file), 'utf8');
         const { data, content } = matter(source);
+        const imageMatch = content.match(/!\[(.*?)\]\((.*?)\)/);
 
         return {
           slug,
@@ -35,6 +38,8 @@ const loadAllPostsWithContent = cache(async (): Promise<BlogPost[]> => {
           date: data.date,
           tags: data.tags || [],
           category: data.category || 'Real Estate',
+          heroAlt: imageMatch?.[1],
+          heroImage: imageMatch?.[2],
           content
         } satisfies BlogPost;
       })
@@ -51,7 +56,8 @@ const loadAllPosts = cache(async (): Promise<BlogPostMeta[]> => {
       .map(async (file) => {
         const slug = file.replace('.mdx', '');
         const source = await fs.readFile(path.join(BLOG_DIR, file), 'utf8');
-        const { data } = matter(source);
+        const { data, content } = matter(source);
+        const imageMatch = content.match(/!\[(.*?)\]\((.*?)\)/);
 
         return {
           slug,
@@ -59,7 +65,9 @@ const loadAllPosts = cache(async (): Promise<BlogPostMeta[]> => {
           description: data.description,
           date: data.date,
           tags: data.tags || [],
-          category: data.category || 'Real Estate'
+          category: data.category || 'Real Estate',
+          heroAlt: imageMatch?.[1],
+          heroImage: imageMatch?.[2]
         } satisfies BlogPostMeta;
       })
   );
@@ -95,6 +103,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   try {
     const source = await fs.readFile(path.join(BLOG_DIR, `${slug}.mdx`), 'utf8');
     const { data, content } = matter(source);
+    const imageMatch = content.match(/!\[(.*?)\]\((.*?)\)/);
 
     return {
       slug,
@@ -103,6 +112,8 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       date: data.date,
       tags: data.tags || [],
       category: data.category || 'Real Estate',
+      heroAlt: imageMatch?.[1],
+      heroImage: imageMatch?.[2],
       content
     };
   } catch {

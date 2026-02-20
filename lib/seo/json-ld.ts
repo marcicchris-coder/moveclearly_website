@@ -138,6 +138,29 @@ export function communityGuideJsonLd({
   };
 }
 
+export function webPageJsonLd({
+  name,
+  url,
+  description
+}: {
+  name: string;
+  url: string;
+  description: string;
+}): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name,
+    url,
+    description,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: siteConfig.name,
+      url: siteConfig.url
+    }
+  };
+}
+
 export function listingJsonLd(listing: Listing): JsonLd {
   const listingUrl = `${siteConfig.url}/listings/${listing.id}`;
   const image = listing.images[0];
