@@ -1,5 +1,6 @@
 import { buildMetadata } from '@/lib/seo/metadata';
 import { siteConfig } from '@/lib/constants';
+import { TrackedAnchor } from '@/components/analytics/tracked-anchor';
 
 export const metadata = buildMetadata({
   title: 'Contact | Move Clearly',
@@ -21,25 +22,45 @@ export default function ContactPage() {
           <ul className='mt-4 space-y-2 text-sm text-muted-foreground'>
             <li>
               Chris Marcic:{' '}
-              <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} className='underline underline-offset-4'>
+              <TrackedAnchor
+                href={`tel:${siteConfig.phone.replace(/\D/g, '')}`}
+                className='underline underline-offset-4'
+                eventName='contact_click'
+                eventParams={{ location: 'contact_page', method: 'phone', contact: 'chris' }}
+              >
                 {siteConfig.phone}
-              </a>
+              </TrackedAnchor>
             </li>
             <li>
-              <a href={`mailto:${siteConfig.email}`} className='underline underline-offset-4'>
+              <TrackedAnchor
+                href={`mailto:${siteConfig.email}`}
+                className='underline underline-offset-4'
+                eventName='contact_click'
+                eventParams={{ location: 'contact_page', method: 'email', contact: 'chris' }}
+              >
                 {siteConfig.email}
-              </a>
+              </TrackedAnchor>
             </li>
             <li className='pt-2'>
               Michelle Marcic:{' '}
-              <a href={`tel:${siteConfig.secondaryPhone.replace(/\D/g, '')}`} className='underline underline-offset-4'>
+              <TrackedAnchor
+                href={`tel:${siteConfig.secondaryPhone.replace(/\D/g, '')}`}
+                className='underline underline-offset-4'
+                eventName='contact_click'
+                eventParams={{ location: 'contact_page', method: 'phone', contact: 'michelle' }}
+              >
                 {siteConfig.secondaryPhone}
-              </a>
+              </TrackedAnchor>
             </li>
             <li>
-              <a href={`mailto:${siteConfig.secondaryEmail}`} className='underline underline-offset-4'>
+              <TrackedAnchor
+                href={`mailto:${siteConfig.secondaryEmail}`}
+                className='underline underline-offset-4'
+                eventName='contact_click'
+                eventParams={{ location: 'contact_page', method: 'email', contact: 'michelle' }}
+              >
                 {siteConfig.secondaryEmail}
-              </a>
+              </TrackedAnchor>
             </li>
             <li className='pt-2'>Brokerage: {siteConfig.brokerage}</li>
           </ul>

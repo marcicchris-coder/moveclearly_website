@@ -1,5 +1,5 @@
 import { buildMetadata } from '@/lib/seo/metadata';
-import Link from 'next/link';
+import { TrackedLink } from '@/components/analytics/tracked-link';
 
 export const metadata = buildMetadata({
   title: 'Market Snapshot | Move Clearly',
@@ -31,12 +31,22 @@ export default function HomeValuePage() {
           Browse current inventory and community pages for local context.
         </p>
         <div className='mt-4 flex flex-wrap gap-3 text-sm'>
-          <Link href='/listings' className='underline underline-offset-4'>
+          <TrackedLink
+            href='/listings'
+            className='underline underline-offset-4'
+            eventName='cta_click'
+            eventParams={{ location: 'home_value_page', cta: 'view_listings', href: '/listings' }}
+          >
             View Listings
-          </Link>
-          <Link href='/communities' className='underline underline-offset-4'>
+          </TrackedLink>
+          <TrackedLink
+            href='/communities'
+            className='underline underline-offset-4'
+            eventName='cta_click'
+            eventParams={{ location: 'home_value_page', cta: 'browse_communities', href: '/communities' }}
+          >
             Browse Communities
-          </Link>
+          </TrackedLink>
         </div>
       </section>
     </div>

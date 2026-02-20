@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { siteConfig } from '@/lib/constants';
+import { TrackedAnchor } from '@/components/analytics/tracked-anchor';
+import { TrackedLink } from '@/components/analytics/tracked-link';
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -19,10 +20,10 @@ export function SiteFooter() {
         <div>
           <h3 className='text-sm font-semibold uppercase tracking-wide'>Explore</h3>
           <ul className='mt-3 space-y-2 text-sm'>
-            <li><Link href='/listings'>Listings</Link></li>
-            <li><Link href='/communities/dunnellon'>Top Areas</Link></li>
-            <li><Link href='/blog'>Blog</Link></li>
-            <li><Link href='/contact'>Contact</Link></li>
+            <li><TrackedLink href='/listings' eventName='footer_link_click' eventParams={{ label: 'listings', href: '/listings' }}>Listings</TrackedLink></li>
+            <li><TrackedLink href='/communities/dunnellon' eventName='footer_link_click' eventParams={{ label: 'top_areas', href: '/communities/dunnellon' }}>Top Areas</TrackedLink></li>
+            <li><TrackedLink href='/blog' eventName='footer_link_click' eventParams={{ label: 'blog', href: '/blog' }}>Blog</TrackedLink></li>
+            <li><TrackedLink href='/contact' eventName='footer_link_click' eventParams={{ label: 'contact', href: '/contact' }}>Contact</TrackedLink></li>
           </ul>
         </div>
 
@@ -31,36 +32,58 @@ export function SiteFooter() {
           <ul className='mt-3 space-y-2 text-sm text-muted-foreground'>
             <li>
               Chris Marcic:{' '}
-              <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} className='underline underline-offset-4'>
+              <TrackedAnchor
+                href={`tel:${siteConfig.phone.replace(/\D/g, '')}`}
+                className='underline underline-offset-4'
+                eventName='contact_click'
+                eventParams={{ location: 'footer', method: 'phone', contact: 'chris' }}
+              >
                 {siteConfig.phone}
-              </a>
+              </TrackedAnchor>
             </li>
             <li>
-              <a href={`mailto:${siteConfig.email}`} className='underline underline-offset-4'>
+              <TrackedAnchor
+                href={`mailto:${siteConfig.email}`}
+                className='underline underline-offset-4'
+                eventName='contact_click'
+                eventParams={{ location: 'footer', method: 'email', contact: 'chris' }}
+              >
                 {siteConfig.email}
-              </a>
+              </TrackedAnchor>
             </li>
             <li className='pt-1'>
               Michelle Marcic:{' '}
-              <a href={`tel:${siteConfig.secondaryPhone.replace(/\D/g, '')}`} className='underline underline-offset-4'>
+              <TrackedAnchor
+                href={`tel:${siteConfig.secondaryPhone.replace(/\D/g, '')}`}
+                className='underline underline-offset-4'
+                eventName='contact_click'
+                eventParams={{ location: 'footer', method: 'phone', contact: 'michelle' }}
+              >
                 {siteConfig.secondaryPhone}
-              </a>
+              </TrackedAnchor>
             </li>
             <li>
-              <a href={`mailto:${siteConfig.secondaryEmail}`} className='underline underline-offset-4'>
+              <TrackedAnchor
+                href={`mailto:${siteConfig.secondaryEmail}`}
+                className='underline underline-offset-4'
+                eventName='contact_click'
+                eventParams={{ location: 'footer', method: 'email', contact: 'michelle' }}
+              >
                 {siteConfig.secondaryEmail}
-              </a>
+              </TrackedAnchor>
             </li>
             <li className='pt-1'>
               Website:{' '}
-              <a
+              <TrackedAnchor
                 href={`https://${siteConfig.website}`}
                 target='_blank'
                 rel='noopener noreferrer'
                 className='underline underline-offset-4'
+                eventName='outbound_click'
+                eventParams={{ location: 'footer', target: siteConfig.website }}
               >
                 {siteConfig.website}
-              </a>
+              </TrackedAnchor>
             </li>
           </ul>
         </div>

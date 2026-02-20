@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { Button } from '@/components/ui/button';
+import { trackEvent } from '@/lib/analytics/track';
 
 export const metadata = buildMetadata({
   title: 'Notice | Move Clearly',
@@ -20,10 +21,14 @@ export default function ThankYouPage({ searchParams }: { searchParams: { type?: 
       <p className='mt-3 text-muted-foreground'>{message}</p>
       <div className='mt-6 flex gap-3'>
         <Button asChild>
-          <Link href='/listings'>View Listings</Link>
+          <Link href='/listings' onClick={() => trackEvent('cta_click', { location: 'thank_you_page', cta: 'view_listings', href: '/listings' })}>
+            View Listings
+          </Link>
         </Button>
         <Button asChild variant='outline'>
-          <Link href='/about'>About Team</Link>
+          <Link href='/about' onClick={() => trackEvent('cta_click', { location: 'thank_you_page', cta: 'about_team', href: '/about' })}>
+            About Team
+          </Link>
         </Button>
       </div>
     </div>

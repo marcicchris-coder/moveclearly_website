@@ -1,5 +1,5 @@
 import { buildMetadata } from '@/lib/seo/metadata';
-import Link from 'next/link';
+import { TrackedLink } from '@/components/analytics/tracked-link';
 
 export const metadata = buildMetadata({
   title: 'Buyer Guide | Move Clearly',
@@ -21,9 +21,16 @@ export default function BuyerGuidePage() {
         <p className='mt-2 text-sm text-muted-foreground'>
           Access the PDF guide with a direct link.
         </p>
-        <Link href='/buyer-guide.pdf' target='_blank' rel='noopener noreferrer' className='mt-4 inline-block underline underline-offset-4'>
+        <TrackedLink
+          href='/buyer-guide.pdf'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='mt-4 inline-block underline underline-offset-4'
+          eventName='download_click'
+          eventParams={{ location: 'buyer_guide_page', asset: 'buyer-guide.pdf' }}
+        >
           Open Buyer Guide PDF
-        </Link>
+        </TrackedLink>
       </section>
     </div>
   );
